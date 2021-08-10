@@ -1,14 +1,32 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - приложение ASP.NET</title>
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <link rel="icon" href="@Url.Content("~/Icon/Burn.ico")" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
+
+@if (Request.Cookies["theme"] == null)
+{
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+}
+else
+{
+    if (Request.Cookies["theme"].Value == "dark")
+    {
+        <link href="~/Content/Site2.css" rel="stylesheet" type="text/css" />
+    }
+    if (Request.Cookies["theme"].Value == "light")
+    {
+        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    }
+}
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -25,7 +43,23 @@
                     <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
                     <li>@Html.ActionLink("Информация", "About", "Home")</li>
                     <li>@Html.ActionLink("Связаться", "Contact", "Home")</li>
+
                 </ul>
+
+                @*<a id="change-themes-button" href='@Url.Action("ChangeTheme", "Themes")'> click me </a>*@
+
+
+                @*Для поиска данных*@
+                @*@using (Html.BeginForm("ChangeTheme", "Theme", FormMethod.Post)) {
+                    @Html.TextArea("text", "", 2, 20, null)
+                    <input type="submit" value="Send" />}*@
+
+                <button class="navbar-btn" value="Themes" href="https://stackoverflow.com/questions/60956338/dark-mode-for-asp-net-mvc-app-theme-wont-switch" onclick="location.href='@Url.Action("ChangeTheme", "Themes")'">
+                    <i class="fa fa-adjust" aria-hidden="true"></i>Themes
+                </button>
+
+                @*<input type="submit" value="Themes" onclick="location.href='@Url.Action("ChangeTheme", "Themes")'" />*@
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -34,12 +68,25 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - мое приложение ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - ASP.NET VadyaStudio</p>
+            <img src="~/Icon/15.ico" alt="dotnet" class="pull-left" width="20" height="20" />
         </footer>
+    </div>
+    <div id="markdownEditor">
+        
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js"></script>
+    <style href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown-editor/2.0.2/css/bootstrap-markdown-editor.css"></style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown-editor/2.0.2/js/bootstrap-markdown-editor.js"></script>
+    <script>
+        debugger;
+        $('#markdownEditor').markdownEditor('setContent', "#Hello markdown");
+    </script>
 </body>
 </html>
+
+

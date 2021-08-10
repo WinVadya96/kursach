@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using System.Web;
 
 [assembly: OwinStartupAttribute(typeof(kursach.Startup))]
 namespace kursach
@@ -10,5 +11,12 @@ namespace kursach
         {
             ConfigureAuth(app);
         }
+
+        //public void ConfigureServices(IServiceCollection services)
+        //{
+
+        //}
+        
     }
+
 }
