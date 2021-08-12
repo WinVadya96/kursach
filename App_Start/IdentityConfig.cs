@@ -96,6 +96,15 @@ namespace kursach
         {
         }
 
+        public override async Task SignInAsync(ApplicationUser user, bool isPersistent, bool rememberBrowser)
+        {
+            await base.SignInAsync(user, isPersistent, rememberBrowser).ConfigureAwait(false);
+
+            user.IsAdminIn = false;
+
+            await UserManager.UpdateAsync(user).ConfigureAwait(false);
+        }
+
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
             return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);

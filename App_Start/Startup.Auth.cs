@@ -45,11 +45,6 @@ namespace kursach
             // Точно так же действует параметр RememberMe при входе.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Раскомментируйте приведенные далее строки, чтобы включить вход с помощью сторонних поставщиков входа
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
-
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
@@ -58,11 +53,11 @@ namespace kursach
                appId: "350369863392095",
                appSecret: "a43b742a48b6ac591a52f4692e9accae");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "779481361784-sseslvpn4209qeeih70cfn66jdk44vpj.apps.googleusercontent.com",
+                ClientSecret = "S6cEoXWEu04C4pEqATx6iQkj"
+            });
         }
     }
 }

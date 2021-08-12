@@ -36,27 +36,27 @@ else
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Коллекции", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
                     <li>@Html.ActionLink("Информация", "About", "Home")</li>
-                    <li>@Html.ActionLink("Связаться", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Control", "Control", "Home")</li>
+                    <li>@Html.ActionLink("Пользователи", "GetUsers", "Home")</li>
 
                 </ul>
-
+                <button class="navbar-btn" value="Themes" href="https://stackoverflow.com/questions/60956338/dark-mode-for-asp-net-mvc-app-theme-wont-switch" onclick="location.href='@Url.Action("ChangeTheme", "Themes")'">
+                    <i class="fa fa-adjust" aria-hidden="true"></i>Themes
+                </button>
                 @*<a id="change-themes-button" href='@Url.Action("ChangeTheme", "Themes")'> click me </a>*@
 
 
                 @*Для поиска данных*@
                 @*@using (Html.BeginForm("ChangeTheme", "Theme", FormMethod.Post)) {
-                    @Html.TextArea("text", "", 2, 20, null)
-                    <input type="submit" value="Send" />}*@
+        @Html.TextArea("text", "", 2, 20, null)
+        <input type="submit" value="Send" />}*@
 
-                <button class="navbar-btn" value="Themes" href="https://stackoverflow.com/questions/60956338/dark-mode-for-asp-net-mvc-app-theme-wont-switch" onclick="location.href='@Url.Action("ChangeTheme", "Themes")'">
-                    <i class="fa fa-adjust" aria-hidden="true"></i>Themes
-                </button>
+
 
                 @*<input type="submit" value="Themes" onclick="location.href='@Url.Action("ChangeTheme", "Themes")'" />*@
 

@@ -26,12 +26,8 @@ namespace kursach.Controllers
                     Response.Cookies["Theme"].Value = "dark";
                 }
             }
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
-        //public ActionResult ChangeTheme2()
-        //{
-        //    return RedirectToAction("Index");
-        //}
 
         // Для поиска данных
         [HttpPost]
