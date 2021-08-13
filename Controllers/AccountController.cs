@@ -70,7 +70,12 @@ namespace kursach.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //await UserManager.AddToRoleAsync(user.Id, "user");
+                return View(model);
+            }
+
+            if (await UserIsBlocked(model.Email).ConfigureAwait(false))
+            {
+                ModelState.AddModelError("", "Пользователь заблокирован.");
                 return View(model);
             }
 
@@ -90,6 +95,13 @@ namespace kursach.Controllers
                     ModelState.AddModelError("", "Неудачная попытка входа.");
                     return View(model);
             }
+        }
+
+        private async Task<bool> UserIsBlocked(string email)
+        {
+            var user = await UserManager.FindByEmailAsync(email).ConfigureAwait(false);
+
+            return user == null;
         }
 
         //
@@ -152,7 +164,7 @@ namespace kursach.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, IsBlocked = false, IsAdminIn = false };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

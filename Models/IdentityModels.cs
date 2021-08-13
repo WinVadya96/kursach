@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Providers.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -18,6 +22,14 @@ namespace kursach.Models
             return userIdentity;
         }
         public bool IsAdminIn { get; set; }
+        public bool IsBlocked { get; set; }
+        //public List<string> Roles { get; set; }
+
+        //public virtual ICollection<Collection> Collections { get; set; }
+        //public ApplicationUser()
+        //{
+        //    Collections = new List<Collection>();
+        //}
     }
 
     public class Collection
@@ -27,6 +39,7 @@ namespace kursach.Models
         public string Description { get; set; }
         public string TopicName { get; set; } 
 
+        //public virtual ICollection<User> Users { get; set; }
     }
 
     public class Topic
@@ -56,42 +69,56 @@ namespace kursach.Models
         public DbSet<Collection> Collections { get; set; }
         public DbSet<Topic> Topics { get; set; }
 
-        // Добавление инициализатора
-        //public class CollectionDbInitialiser : DropCreateDatabaseAlways<ApplicationDbContext>
-        //{
-        //    protected override void Seed(ApplicationDbContext db)
-        //    {
-        //        db.Collections.Add(new Collection { Name = "Вщйна и мир", })
-        //    }
-        //}
-
-        public class AppDbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
-        {
-            protected override void Seed(ApplicationDbContext context)
-            {
-                var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
-                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-                var role1 = new IdentityRole { Name = "admin" };
-                var role2 = new IdentityRole { Name = "user" };
-                roleManager.Create(role1);
-                roleManager.Create(role2);
-
-                var admin = new ApplicationUser { Email = "admin@gmail.com", UserName = "admin@gmail.com" };
-                string password = "Vasya123";
-                var result = userManager.Create(admin, password);
-
-                if (result.Succeeded)
-                {
-                    userManager.AddToRole(admin.Id, role1.Name);
-                    userManager.AddToRole(admin.Id, role2.Name);
-                }
-                base.Seed(context);
-            }
-        }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+    }
+
+    public class AppDbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
+    {
+        public override void InitializeDatabase(ApplicationDbContext context)
+        {
+            base.InitializeDatabase(context);
+            Seed(context);
+        }
+
+        protected override void Seed(ApplicationDbContext context)
+        {
+            if (CheckIfInitialized(context))
+            {
+                return;
+            }
+
+            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            var role1 = new IdentityRole { Name = "admin" };
+            var role2 = new IdentityRole { Name = "user" };
+
+            roleManager.Create(role1);
+            roleManager.Create(role2);
+
+            var admin = new ApplicationUser { Email = "bigadmin@gmail.com", UserName = "bigadmin@gmail.com", IsAdminIn = true, IsBlocked = true };
+            string password = "Vadya123";
+            var result = userManager.Create(admin, password);
+
+            if (result.Succeeded)
+            {
+                userManager.AddToRole(admin.Id, role1.Name);
+                userManager.AddToRole(admin.Id, role2.Name);
+            }
+
+            context.Collections.AddOrUpdate(new Collection { Name = "Чайка", Description = "Это кника напасана А. Чеховым", TopicName = "Книги" });
+            context.Collections.AddOrUpdate(new Collection { Name = "Водка", Description = "Это алкогольный напиток, 40%", TopicName = "Алкоголь" });
+            context.SaveChanges();
+
+            base.Seed(context);
+        }
+
+        private bool CheckIfInitialized(ApplicationDbContext context)
+        {
+            return context.Users.Any(u => u.Email.Equals("bigadmin@gmail.com"));
         }
     }
 }

@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress>false</Use64BitIISExpress>
-    <IISExpressSSLPort>44314</IISExpressSSLPort>
+    <IISExpressSSLPort>44379</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
@@ -204,6 +204,14 @@
     <Compile Include="Migrations\202108120659345_Add TopicTable.Designer.cs">
       <DependentUpon>202108120659345_Add TopicTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108121331023_add IsEnabled.cs" />
+    <Compile Include="Migrations\202108121331023_add IsEnabled.Designer.cs">
+      <DependentUpon>202108121331023_add IsEnabled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108132045332_addRoles.cs" />
+    <Compile Include="Migrations\202108132045332_addRoles.Designer.cs">
+      <DependentUpon>202108132045332_addRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -275,9 +283,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\GetUsers.cshtml" />
-    <Content Include="Views\Home\Control.cshtml" />
-    <Content Include="Views\Home\GetMyRole.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
+    <Content Include="Views\Home\Delete.cshtml" />
+    <Content Include="Views\Home\GetMyRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -315,6 +323,12 @@
     <EmbeddedResource Include="Migrations\202108120659345_Add TopicTable.resx">
       <DependentUpon>202108120659345_Add TopicTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108121331023_add IsEnabled.resx">
+      <DependentUpon>202108121331023_add IsEnabled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108132045332_addRoles.resx">
+      <DependentUpon>202108132045332_addRoles.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -334,7 +348,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62876</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44314/</IISUrl>
+          <IISUrl>https://localhost:44379/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

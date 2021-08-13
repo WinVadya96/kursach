@@ -100,7 +100,7 @@ namespace kursach
         {
             await base.SignInAsync(user, isPersistent, rememberBrowser).ConfigureAwait(false);
 
-            user.IsAdminIn = false;
+            //user.IsAdminIn = false;
 
             await UserManager.UpdateAsync(user).ConfigureAwait(false);
         }

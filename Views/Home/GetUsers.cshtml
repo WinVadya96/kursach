@@ -26,13 +26,18 @@
         <th>
             @Html.DisplayNameFor(model => model.SecurityStamp)
         </th>
-        <th>            
+        <th>
             @Html.DisplayNameFor(model => model.IsAdminIn)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsBlocked)
+        </th>
+        <td>
+            <label> User actions </label>
+        </td>
     </tr>
 
     @foreach (var item in Model)
@@ -45,8 +50,7 @@
                 @Html.DisplayFor(modelItem => item.SecurityStamp)
             </td>
             <td>
-                @*@Html.CheckBoxFor(model => model)*@
-                @Html.DisplayFor(modelItem => item.IsAdminIn)
+                @Html.HiddenFor(modelItem => item.IsAdminIn)
                 @if (item.IsAdminIn)
                 {
                     <label>Yes</label>
@@ -55,16 +59,25 @@
                 {
                     <label>No</label>
                 }
-
-
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.HiddenFor(modelItem => item.IsBlocked)
+                @if (item.IsBlocked)
+                {
+                    <label>Yes</label>
+                }
+                else
+                {
+                    <label>No</label>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Просмотреть", "Edit", new { id = item.Id })
+                @Html.ActionLink("Заблокировать", "Blocked", new { id = item.Id })
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

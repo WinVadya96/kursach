@@ -28,6 +28,9 @@ else
     }
 }
 <body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -40,8 +43,7 @@ else
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Информация", "About", "Home")</li>
-                    <li>@Html.ActionLink("Control", "Control", "Home")</li>
+                    <li>@Html.ActionLink("Мои коллекции", "About", "Home")</li>
                     <li>@Html.ActionLink("Пользователи", "GetUsers", "Home")</li>
 
                 </ul>
@@ -50,11 +52,10 @@ else
                 </button>
                 @*<a id="change-themes-button" href='@Url.Action("ChangeTheme", "Themes")'> click me </a>*@
 
-
                 @*Для поиска данных*@
                 @*@using (Html.BeginForm("ChangeTheme", "Theme", FormMethod.Post)) {
-        @Html.TextArea("text", "", 2, 20, null)
-        <input type="submit" value="Send" />}*@
+                    @Html.TextArea("text", "", 2, 20, null)
+                    <input type="submit" value="Send" />}*@
 
 
 
@@ -73,17 +74,14 @@ else
         </footer>
     </div>
     <div id="markdownEditor">
-        
+
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js"></script>
     <style href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown-editor/2.0.2/css/bootstrap-markdown-editor.css"></style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown-editor/2.0.2/js/bootstrap-markdown-editor.js"></script>
     <script>
-        debugger;
         $('#markdownEditor').markdownEditor('setContent', "#Hello markdown");
     </script>
 </body>

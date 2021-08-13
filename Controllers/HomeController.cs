@@ -3,7 +3,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,28 +26,32 @@ namespace kursach.Controllers
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Тут будут находится пользовательские коллекции.";
 
             return View();
         }
 
-        [Authorize]
-        public ActionResult Control()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
+        //public ActionResult GetUsers()
+        //{
+        //    List<ApplicationUser> users = new List<ApplicationUser>();
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        users = db.Users.ToList();
+        //    }
+        //    return View(users);
+        //}
 
-        public ActionResult GetUsers()
+        [Authorize(Roles = "admin")]
+        public async Task<ActionResult> GetUsers()
         {
-            List<ApplicationUser> users = new List<ApplicationUser>();
+            IList<ApplicationUser> users = new List<ApplicationUser>();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                users = db.Users.ToList();
+                users = await db.Users.ToListAsync();
             }
             return View(users);
         }
@@ -67,9 +73,57 @@ namespace kursach.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Delete(string id)
+        {            
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                ApplicationUser us = db.Users.Find(id);
+                if (us == null)
+                {
+                    return HttpNotFound();
+                }
+                return View();
+            }
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                ApplicationUser us = db.Users.Find(id);
+                if (us == null)
+                {
+                    return HttpNotFound();
+                }
+                db.Users.Remove(us);
+                db.SaveChanges();
+                return RedirectToAction("GetUsers");
+            }
+        }
+
+
+        public ActionResult Blocked(string id)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                ApplicationUser user = db.Users.Find(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                var z = user.IsBlocked.ToString();
+                user.IsBlocked = z == "False";
+                db.SaveChanges();
+                return RedirectToAction("GetUsers");
+            }
+        }
+
 
         // Позволяет получить роли пользователя
-        public ActionResult GetMyRole()
+        [Authorize]
+        public ActionResult GetMyRoles()
         {
             IList<string> roles = new List<string> { "Роль не определена"};
             ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -78,21 +132,5 @@ namespace kursach.Controllers
                 roles = userManager.GetRoles(user.Id);
             return View(roles);
         }
-
-        //[Authorize]
-        //public ActionResult ViewUsers()
-        //{
-        //    var users = dbContext.Set<ApplicationUser>()
-        //        .ToList()
-        //        .Select(u => new UsersModel
-        //        {
-        //            Id = u.Id,
-        //            Name = u.UserName,
-        //            Email = u.Email,
-        //            IsAdminIn = u.IsAdminIn
-        //        });
-
-        //    return View(users);
-        //}
     }
 }
