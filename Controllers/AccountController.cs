@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using kursach.Models;
+using System.Collections.Generic;
 
 namespace kursach.Controllers
 {
@@ -67,7 +68,8 @@ namespace kursach.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        {
+        {                    
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -100,8 +102,16 @@ namespace kursach.Controllers
         private async Task<bool> UserIsBlocked(string email)
         {
             var user = await UserManager.FindByEmailAsync(email).ConfigureAwait(false);
+            if (user.IsAdminIn)
+            {
+                await UserManager.AddToRoleAsync(user.Id, "admin");
+            }
+            else
+            {
+                await UserManager.RemoveFromRoleAsync(user.Id, "admin");
+            }
 
-            return user == null;
+            return user.IsBlocked;
         }
 
         //

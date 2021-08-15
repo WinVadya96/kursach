@@ -99,7 +99,7 @@ namespace kursach.Models
             roleManager.Create(role1);
             roleManager.Create(role2);
 
-            var admin = new ApplicationUser { Email = "bigadmin@gmail.com", UserName = "bigadmin@gmail.com", IsAdminIn = true, IsBlocked = true };
+            var admin = new ApplicationUser { Email = "bigadmin@gmail.com", UserName = "bigadmin@gmail.com", IsAdminIn = true, IsBlocked = false };
             string password = "Vadya123";
             var result = userManager.Create(admin, password);
 

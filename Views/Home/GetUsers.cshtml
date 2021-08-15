@@ -16,7 +16,7 @@
 </style>
 
 <p>
-    @Html.ActionLink("Create New", "Create", "Home")
+    @Html.ActionLink("Create New", "Register2", "Reg")
 </p>
 <table id="home_view-users__table">
     <tr>
@@ -27,10 +27,10 @@
             @Html.DisplayNameFor(model => model.SecurityStamp)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsAdminIn)
+            @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.IsAdminIn)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsBlocked)
@@ -48,9 +48,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SecurityStamp)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.HiddenFor(modelItem => item.IsAdminIn)
+                @Html.DisplayFor(modelItem => item.IsAdminIn)
                 @if (item.IsAdminIn)
                 {
                     <label>Yes</label>
@@ -59,9 +62,6 @@
                 {
                     <label>No</label>
                 }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 @Html.HiddenFor(modelItem => item.IsBlocked)
@@ -78,6 +78,7 @@
                 @Html.ActionLink("Просмотреть", "Edit", new { id = item.Id })
                 @Html.ActionLink("Заблокировать", "Blocked", new { id = item.Id })
                 @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                @Html.ActionLink("Сделать админом", "Admin", new { id = item.Id })
             </td>
         </tr>
     }

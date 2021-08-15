@@ -8,19 +8,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using kursach.Controllers;
 
 namespace kursach.Controllers
 {
     [RequireHttps]
+
     public class HomeController : Controller
     {
-        
-        //private readonly ApplicationDbContext dbContext;
-        //public HomeController(ApplicationDbContext dbContext)
-        //{
-        //    this.dbContext = dbContext;
-        //}
-
         public ActionResult Index()
         {
             return View();
@@ -34,7 +29,6 @@ namespace kursach.Controllers
             return View();
         }
 
-
         //public ActionResult GetUsers()
         //{
         //    List<ApplicationUser> users = new List<ApplicationUser>();
@@ -44,6 +38,16 @@ namespace kursach.Controllers
         //    }
         //    return View(users);
         //}
+
+        public async Task<ActionResult> GetCollections()
+        {
+            IList<Collection> collections = new List<Collection>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                collections = await db.Collections.ToListAsync();
+            }
+            return View(collections);
+        }
 
         [Authorize(Roles = "admin")]
         public async Task<ActionResult> GetUsers()
@@ -56,22 +60,22 @@ namespace kursach.Controllers
             return View(users);
         }
 
-        [HttpGet]
-        public ActionResult Create()
-        {
-            
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Create(ApplicationUser user)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index");
-        }
+        //[HttpGet]
+        //public ActionResult Create() //RegisterViewModel model
+        //{
+        //    return View();
+        //    //return View(model);
+        //}
+        //[HttpPost]
+        //public ActionResult Create(ApplicationUser user)
+        //{
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        db.Users.Add(user);
+        //        db.SaveChanges();
+        //    }
+        //    return RedirectToAction("Index");
+        //}
 
         [HttpGet]
         public ActionResult Delete(string id)
@@ -115,6 +119,22 @@ namespace kursach.Controllers
                 }
                 var z = user.IsBlocked.ToString();
                 user.IsBlocked = z == "False";
+                db.SaveChanges();
+                return RedirectToAction("GetUsers");
+            }
+        }
+
+        public ActionResult Admin(string id)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                ApplicationUser user = db.Users.Find(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                var z = user.IsAdminIn.ToString();
+                user.IsAdminIn = z == "False";
                 db.SaveChanges();
                 return RedirectToAction("GetUsers");
             }
