@@ -16,6 +16,12 @@ namespace kursach.Controllers
 
     public class HomeController : Controller
     {
+        //private AppDbInitializer db = new AppDbInitializer();
+        //public ActionResult Edit(ApplicationUser Email)
+        //{
+        //    ApplicationUser user = db.ApplicationUser.Find(Email);
+        //}
+
         public ActionResult Index()
         {
             return View();
@@ -28,16 +34,6 @@ namespace kursach.Controllers
 
             return View();
         }
-
-        //public ActionResult GetUsers()
-        //{
-        //    List<ApplicationUser> users = new List<ApplicationUser>();
-        //    using (ApplicationDbContext db = new ApplicationDbContext())
-        //    {
-        //        users = db.Users.ToList();
-        //    }
-        //    return View(users);
-        //}
 
         public async Task<ActionResult> GetCollections()
         {

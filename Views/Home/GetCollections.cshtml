@@ -21,6 +21,9 @@
 <table id="home_view-collection__table">
     <tr>
         <th>
+            @Html.DisplayName("№")
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -38,6 +41,9 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
@@ -46,6 +52,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TopicName)
             </td>
+
             <td>
                 @Html.ActionLink("Просмотреть", "Edit", new { id = item.Id })
                 @Html.ActionLink("Редактировать", "Blocked", new { id = item.Id })
@@ -55,5 +62,7 @@
     }
 
 </table>
+
+<button class="navbar-btn" value="Edit_table" onclick="location.href='@Url.Action("Index", "CollectionTopics")'">Изменить таблицу</button>
 
 

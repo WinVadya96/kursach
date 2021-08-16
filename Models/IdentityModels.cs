@@ -11,7 +11,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace kursach.Models
 {
-    // В профиль пользователя можно добавить дополнительные данные, если указать больше свойств для класса ApplicationUser. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=317594.
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -23,13 +22,10 @@ namespace kursach.Models
         }
         public bool IsAdminIn { get; set; }
         public bool IsBlocked { get; set; }
-        //public List<string> Roles { get; set; }
 
         //public virtual ICollection<Collection> Collections { get; set; }
-        //public ApplicationUser()
-        //{
-        //    Collections = new List<Collection>();
-        //}
+        public virtual ICollection<UserCollection> UserCollections { get; set; }
+
     }
 
     public class Collection
@@ -39,24 +35,40 @@ namespace kursach.Models
         public string Description { get; set; }
         public string TopicName { get; set; } 
 
-        //public virtual ICollection<User> Users { get; set; }
+        //public virtual ICollection<ApplicationUser> Users { get; set; }
+        public virtual ICollection<UserCollection> UserCollections { get; set; }
+        public virtual ICollection<CollectionTopic> CollectonTopics { get; set; }
     }
 
     public class Topic
     {
         public int TopicId { get; set; }
         public string String1 { get; set; }
+        public bool BoolForString1 { get; set; }
         public string String2 { get; set; }
+        public bool BoolForString2 { get; set; }
         public string String3 { get; set; }
+        public bool BoolForString3 { get; set; }
         public int? Number1 { get; set; }
+        public bool BoolForNumber1 { get; set; }
         public int? Number2 { get; set; }
+        public bool BoolForNumber2 { get; set; }
         public int? Number3 { get; set; }
+        public bool BoolForNumber3 { get; set; }
         public DateTime? Date1 { get; set; }
+        public bool BoolForDateTime1 { get; set; }
         public DateTime? Date2 { get; set; }
+        public bool BoolForDateTime2 { get; set; }
         public DateTime? Date3 { get; set; }
+        public bool BoolForDateTime3 { get; set; }
         public bool Checkbox1 { get; set; }
+        public bool BoolForCheckBox1 { get; set; }
         public bool Checkbox2 { get; set; }
+        public bool BoolForCheckBox2 { get; set; }
         public bool Checkbox3 { get; set; }
+        public bool BoolForCheckBox3 { get; set; }
+        //public virtual ICollection<Collection> Collections { get; set; }
+        public virtual ICollection<CollectionTopic> CollectonTopics { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -66,8 +78,14 @@ namespace kursach.Models
         {
         }
 
+        
+        
+        //public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Collection> Collections { get; set; }
         public DbSet<Topic> Topics { get; set; }
+        public DbSet<UserCollection> UserCollection { get; set; }
+        public DbSet<CollectionTopic> CollectonTopic { get; set; }
+
 
         public static ApplicationDbContext Create()
         {
@@ -111,10 +129,14 @@ namespace kursach.Models
 
             context.Collections.AddOrUpdate(new Collection { Name = "Чайка", Description = "Это кника напасана А. Чеховым", TopicName = "Книги" });
             context.Collections.AddOrUpdate(new Collection { Name = "Водка", Description = "Это алкогольный напиток, 40%", TopicName = "Алкоголь" });
+            context.Collections.AddOrUpdate(new Collection { Name = "Adidas UCL 21 Pro SALA", Description = "Мяч для футбола на траве", TopicName = "Футбольные мячи" });
             context.SaveChanges();
+
 
             base.Seed(context);
         }
+
+        
 
         private bool CheckIfInitialized(ApplicationDbContext context)
         {
