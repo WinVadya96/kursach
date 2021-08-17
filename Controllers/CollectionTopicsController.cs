@@ -120,8 +120,44 @@ namespace kursach.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult EditTable()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditTablePost(string[] stringItems, bool boolItems1 = false, bool boolItems2 = false,
+            bool boolItems3 = false, bool boolItems4 = false, bool boolItems5 = false, bool boolItems6 = false,
+            bool boolItems7 = false, bool boolItems8 = false, bool boolItems9 = false, bool boolItems10 = false,
+            bool boolItems11 = false, bool boolItems12 = false)
+        {
+            List<bool> boolItems = new List<bool>();
+            boolItems.Add(boolItems1);
+            boolItems.Add(boolItems2);
+            boolItems.Add(boolItems3);
+            boolItems.Add(boolItems4);
+            boolItems.Add(boolItems5);
+            boolItems.Add(boolItems6);
+            boolItems.Add(boolItems7);
+            boolItems.Add(boolItems8);
+            boolItems.Add(boolItems9);
+            boolItems.Add(boolItems10);
+            boolItems.Add(boolItems11);
+            boolItems.Add(boolItems12);
+            int i = 0;
+            string res = "";
+            string resbool = "";
+            foreach (var item in stringItems)
+            {
+                if (boolItems[i])
+                {
+                    res += item + "; ";
+                    resbool += boolItems[i].ToString();
+                }
+                i += 1;
+            }
+            ViewData["Message"] = resbool;
             return View();
         }
 

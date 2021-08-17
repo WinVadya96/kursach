@@ -81,6 +81,7 @@ namespace kursach.Controllers
                 return View(model);
             }
 
+
             // Сбои при входе не приводят к блокированию учетной записи
             // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
@@ -97,10 +98,16 @@ namespace kursach.Controllers
                     ModelState.AddModelError("", "Неудачная попытка входа.");
                     return View(model);
             }
+
+            
         }
 
         private async Task<bool> UserIsBlocked(string email)
         {
+            //if ()
+            //{
+                
+            //}
             var user = await UserManager.FindByEmailAsync(email).ConfigureAwait(false);
             if (user.IsAdminIn)
             {
@@ -110,7 +117,6 @@ namespace kursach.Controllers
             {
                 await UserManager.RemoveFromRoleAsync(user.Id, "admin");
             }
-
             return user.IsBlocked;
         }
 

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<kursach.Models.Collection>
 
 @{
-    ViewBag.Title = "GetCollections";
+    ViewBag.Title = "Коллекции";
 }
 
 <h2>Коллекции</h2>
@@ -63,6 +63,7 @@
 
 </table>
 
-<button class="navbar-btn" value="Edit_table" onclick="location.href='@Url.Action("Index", "CollectionTopics")'">Изменить таблицу</button>
+<button class="navbar-btn" value="Edit_table" 
+        onclick="location.href='@Url.Action("EditTable", "CollectionTopics")'">Изменить таблицу</button>
 
 

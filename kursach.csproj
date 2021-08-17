@@ -316,6 +316,7 @@
     <Content Include="Views\CollectionTopics\Edit.cshtml" />
     <Content Include="Views\CollectionTopics\Index.cshtml" />
     <Content Include="Views\CollectionTopics\EditTable.cshtml" />
+    <Content Include="Views\CollectionTopics\EditTablePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
