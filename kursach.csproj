@@ -215,19 +215,28 @@
     <Compile Include="Migrations\202108132045332_addRoles.Designer.cs">
       <DependentUpon>202108132045332_addRoles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202108161441399_ManyToManyCollectionTopic.cs" />
-    <Compile Include="Migrations\202108161441399_ManyToManyCollectionTopic.Designer.cs">
-      <DependentUpon>202108161441399_ManyToManyCollectionTopic.cs</DependentUpon>
+    <Compile Include="Migrations\202108180821456_NewCollectionTopic.cs" />
+    <Compile Include="Migrations\202108180821456_NewCollectionTopic.Designer.cs">
+      <DependentUpon>202108180821456_NewCollectionTopic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108181803210_NewCollection.cs" />
+    <Compile Include="Migrations\202108181803210_NewCollection.Designer.cs">
+      <DependentUpon>202108181803210_NewCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108181812357_NewCollectionTopicName.cs" />
+    <Compile Include="Migrations\202108181812357_NewCollectionTopicName.Designer.cs">
+      <DependentUpon>202108181812357_NewCollectionTopicName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Collection.cs" />
     <Compile Include="Models\CollectionTopic.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserCollection.cs" />
-    <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="FormModels\EditTablePostFormModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -320,6 +329,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="EntityConfigurations\" />
     <Folder Include="Views\Themes\" />
   </ItemGroup>
   <ItemGroup>
@@ -352,8 +362,14 @@
     <EmbeddedResource Include="Migrations\202108132045332_addRoles.resx">
       <DependentUpon>202108132045332_addRoles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108161441399_ManyToManyCollectionTopic.resx">
-      <DependentUpon>202108161441399_ManyToManyCollectionTopic.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202108180821456_NewCollectionTopic.resx">
+      <DependentUpon>202108180821456_NewCollectionTopic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108181803210_NewCollection.resx">
+      <DependentUpon>202108181803210_NewCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108181812357_NewCollectionTopicName.resx">
+      <DependentUpon>202108181812357_NewCollectionTopicName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

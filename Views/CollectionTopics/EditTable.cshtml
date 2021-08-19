@@ -1,4 +1,4 @@
-﻿@model kursach.Models.Topic
+﻿@model kursach.Models.Collection
 
 @{
     ViewBag.Title = "EditTable";
@@ -7,18 +7,55 @@
 <h2>EditTable</h2>
 
 
-@using (Html.BeginForm("EditTablePost", "CollectionTopics"))
+@using (Html.BeginForm("EditTablePost", "CollectionTopics", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <h4>Topic</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.TopicId)
+    @Html.HiddenFor(model => model.Id)
+
+    <input type="hidden" value="@Model.Id" name="Id"/>
+    
+    <div class="row">
+        <div class="col-md-offset-2">
+            <div class="form-group col-md-3">
+                <input type="text" placeholder="Name" border="1" name="stringItems" value="" class="text-left" />
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form asp-action>
+            
+        </form>
+        <div class="form-group col-md-3">
+            <p>
+                <select size="3" multiple name="Topics[]">
+                    <option disabled>Выберите тему</option>
+                    <option value="NotTopic">Без темы</option>
+                    <option selected value="Alcogols">Алкоголь</option>
+                    <option value="Books">Книги</option>
+                    <option value="Balls">Мячи</option>
+                </select>
+            </p>
+            <p><input type="submit" value="Отправить"></p>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.String1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group col-md-3">
+                <label> Discription</label>
+                @Html.TextArea("text", "", 2, 20, null)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.String1Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -28,8 +65,8 @@
         </div>
         <div class="form-group col-md-3">
             @*@Html.LabelFor(model => model.String1, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <input type="text" placeholder="String1" border="1" name="stringItems" value="" class="text-left" />
-            @Html.ValidationMessageFor(model => model.String1, "", new { @class = "text-danger" })
+            <input type="text" placeholder="String1Name" border="1" name="stringItems" value="" class="text-left" />
+            @Html.ValidationMessageFor(model => model.String1Name, "", new { @class = "text-danger" })
             @*<br />*@
             @*@Html.EditorFor(model => model.String1, new { htmlAttributes = new { @class = "form-control" } })*@
         </div>
@@ -37,7 +74,7 @@
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.String2, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.String2Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -46,14 +83,14 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-3">
-            <input type="text" placeholder="String2" border="1" name="stringItems" value="" class="text-left" />
-            @Html.ValidationMessageFor(model => model.String2, "", new { @class = "text-danger" })
+            <input type="text" placeholder="String2Name" border="1" name="stringItems" value="" class="text-left" />
+            @Html.ValidationMessageFor(model => model.String2Name, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.String3, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.String3Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -62,14 +99,14 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-3">
-            <input type="text" placeholder="String3" border="1" name="stringItems" value="" class="text-left" />
-            @Html.ValidationMessageFor(model => model.String3, "", new { @class = "text-danger" })
+            <input type="text" placeholder="String3Name" border="1" name="stringItems" value="" class="text-left" />
+            @Html.ValidationMessageFor(model => model.String3Name, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.Number1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Number1Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -78,14 +115,14 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-3">
-            <input type="text" placeholder="Number1" border="1" name="stringItems" value="" class="text-left" />
-            @Html.ValidationMessageFor(model => model.Number1, "", new { @class = "text-danger" })
+            <input type="text" placeholder="Number1Name" border="1" name="stringItems" value="" class="text-left" />
+            @Html.ValidationMessageFor(model => model.Number1Name, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.Number2, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Number2Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -94,14 +131,14 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-3">
-            <input type="text" placeholder="Number2" border="1" name="stringItems" value="" class="text-left" />
-            @Html.ValidationMessageFor(model => model.Number2, "", new { @class = "text-danger" })
+            <input type="text" placeholder="Number2Name" border="1" name="stringItems" value="" class="text-left" />
+            @Html.ValidationMessageFor(model => model.Number2Name, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.Number3, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Number3Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -110,14 +147,14 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-3">
-            <input type="text" placeholder="Number3" border="1" name="stringItems" value="" class="text-left" />
-            @Html.ValidationMessageFor(model => model.Number3, "", new { @class = "text-danger" })
+            <input type="text" placeholder="Number3Name" border="1" name="stringItems" value="" class="text-left" />
+            @Html.ValidationMessageFor(model => model.Number3Name, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.Date1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Date1Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -126,14 +163,14 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-3">
-            <input type="text" placeholder="Date1" border="1" name="stringItems" value="" class="text-left" />
-            @Html.ValidationMessageFor(model => model.Date1, "", new { @class = "text-danger" })
+            <input type="text" placeholder="Date1Name" border="1" name="stringItems" value="" class="text-left" />
+            @Html.ValidationMessageFor(model => model.Date1Name, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.Date1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Date2Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -142,14 +179,14 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-3">
-            <input type="text" placeholder="Date2" border="1" name="stringItems" value="" class="text-left" />
-            @Html.ValidationMessageFor(model => model.Date2, "", new { @class = "text-danger" })
+            <input type="text" placeholder="Date2Name" border="1" name="stringItems" value="" class="text-left" />
+            @Html.ValidationMessageFor(model => model.Date2Name, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.Date3, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Date3Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -158,14 +195,14 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-3">
-            <input type="text" placeholder="Date3" border="1" name="stringItems" value="" class="text-left" />
-            @Html.ValidationMessageFor(model => model.Date3, "", new { @class = "text-danger" })
+            <input type="text" placeholder="Date3Name" border="1" name="stringItems" value="" class="text-left" />
+            @Html.ValidationMessageFor(model => model.Date3Name, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.Checkbox1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Checkbox1Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -174,7 +211,7 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-2">
-            <input type="text" placeholder="Checkbox1" border="1" name="stringItems" value="" class="text-left" />
+            <input type="text" placeholder="Checkbox1Name" border="1" name="stringItems" value="" class="text-left" />
             @*<input type="checkbox" border="1" name="stringItems" value="Checkbox1" class="text-left" />*@
             @*@Html.EditorFor(model => model.Checkbox1, new { htmlAttributes = new { @class = "form-control" } })*@
         </div>
@@ -182,7 +219,7 @@
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.Checkbox2, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Checkbox2Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -191,13 +228,13 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-2">
-            <input type="text" placeholder="Checkbox1" border="1" name="stringItems" value="" class="text-left" />
+            <input type="text" placeholder="Checkbox2Name" border="1" name="stringItems" value="" class="text-left" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-offset-2">
-            @Html.LabelFor(model => model.Checkbox3, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Checkbox3Name, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
     </div>
     <div class="row">
@@ -206,7 +243,7 @@
             <label> Enabled?</label>
         </div>
         <div class="form-group col-md-2">
-            <input type="text" placeholder="Checkbox1" border="1" name="stringItems" value="" class="text-left" />
+            <input type="text" placeholder="Checkbox3Name" border="1" name="stringItems" value="" class="text-left" />
         </div>
     </div>
 
@@ -342,7 +379,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Назад", "GetCollections", "Home")
 </div>
 
 @section Scripts {

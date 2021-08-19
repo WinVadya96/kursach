@@ -57,7 +57,7 @@ namespace kursach.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.Id);
+            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.UserId);
             return View(userCollection);
         }
 
@@ -73,7 +73,7 @@ namespace kursach.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.Id);
+            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.UserId);
             return View(userCollection);
         }
 
@@ -90,7 +90,7 @@ namespace kursach.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.Id);
+            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.UserId);
             return View(userCollection);
         }
 

@@ -16,7 +16,7 @@
 </style>
 
 <p>
-    @Html.ActionLink("Create New", "Register2", "Reg")
+    @Html.ActionLink("Create New", "Create", "CollectionTopics")
 </p>
 <table id="home_view-collection__table">
     <tr>
@@ -30,7 +30,8 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TopicName)
+            @Html.DisplayName("Topic")
+            @*@Html.DisplayNameFor(model => model.CollectonTopic.Name)*@
         </th>
         <td>
             <label> Collection actions </label>
@@ -50,7 +51,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TopicName)
+                @Html.DisplayFor(modelItem => item.CollectonTopic.Name)
             </td>
 
             <td>

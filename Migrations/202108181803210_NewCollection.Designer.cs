@@ -7,13 +7,13 @@ namespace kursach.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ManyToManyCollectionTopic : IMigrationMetadata
+    public sealed partial class NewCollection : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ManyToManyCollectionTopic));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NewCollection));
         
         string IMigrationMetadata.Id
         {
-            get { return "202108161441399_ManyToManyCollectionTopic"; }
+            get { return "202108181803210_NewCollection"; }
         }
         
         string IMigrationMetadata.Source

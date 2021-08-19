@@ -10,23 +10,24 @@
 
     <link rel="icon" href="@Url.Content("~/Icon/Burn.ico")" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-</head>
-
-@if (Request.Cookies["theme"] == null)
-{
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-}
-else
-{
-    if (Request.Cookies["theme"].Value == "dark")
-    {
-        <link href="~/Content/Site2.css" rel="stylesheet" type="text/css" />
-    }
-    if (Request.Cookies["theme"].Value == "light")
+    @if (Request.Cookies["theme"] == null)
     {
         <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     }
-}
+    else
+    {
+        if (Request.Cookies["theme"].Value == "dark")
+        {
+            <link href="~/Content/Site2.css" rel="stylesheet" type="text/css" />
+        }
+        if (Request.Cookies["theme"].Value == "light")
+        {
+            <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+        }
+    }
+</head>
+
+
 <body>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

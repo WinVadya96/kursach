@@ -17,8 +17,7 @@ namespace kursach.Controllers
         // GET: CollectionTopics
         public ActionResult Index()
         {
-            var collectonTopic = db.CollectonTopic.Include(c => c.Collection);
-            return View(collectonTopic.ToList());
+            return View();
         }
 
         // GET: CollectionTopics/Details/5
@@ -39,7 +38,7 @@ namespace kursach.Controllers
         // GET: CollectionTopics/Create
         public ActionResult Create()
         {
-            ViewBag.Id = new SelectList(db.Collections, "Id", "TopicName");
+            ViewBag.Id = new SelectList(db.Collections, "Id", "Name");
             return View();
         }
 
@@ -48,7 +47,7 @@ namespace kursach.Controllers
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TopicId")] CollectionTopic collectionTopic)
+        public ActionResult Create([Bind(Include = "Id,Name")] CollectionTopic collectionTopic)
         {
             if (ModelState.IsValid)
             {
@@ -123,41 +122,12 @@ namespace kursach.Controllers
         [HttpGet]
         public ActionResult EditTable()
         {
-            return View();
+            return View(new Collection());
         }
 
         [HttpPost]
-        public ActionResult EditTablePost(string[] stringItems, bool boolItems1 = false, bool boolItems2 = false,
-            bool boolItems3 = false, bool boolItems4 = false, bool boolItems5 = false, bool boolItems6 = false,
-            bool boolItems7 = false, bool boolItems8 = false, bool boolItems9 = false, bool boolItems10 = false,
-            bool boolItems11 = false, bool boolItems12 = false)
+        public ActionResult EditTablePost(Collection collection)
         {
-            List<bool> boolItems = new List<bool>();
-            boolItems.Add(boolItems1);
-            boolItems.Add(boolItems2);
-            boolItems.Add(boolItems3);
-            boolItems.Add(boolItems4);
-            boolItems.Add(boolItems5);
-            boolItems.Add(boolItems6);
-            boolItems.Add(boolItems7);
-            boolItems.Add(boolItems8);
-            boolItems.Add(boolItems9);
-            boolItems.Add(boolItems10);
-            boolItems.Add(boolItems11);
-            boolItems.Add(boolItems12);
-            int i = 0;
-            string res = "";
-            string resbool = "";
-            foreach (var item in stringItems)
-            {
-                if (boolItems[i])
-                {
-                    res += item + "; ";
-                    resbool += boolItems[i].ToString();
-                }
-                i += 1;
-            }
-            ViewData["Message"] = resbool;
             return View();
         }
 
