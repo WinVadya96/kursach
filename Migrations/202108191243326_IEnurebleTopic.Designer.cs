@@ -7,13 +7,13 @@ namespace kursach.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class NewCollection : IMigrationMetadata
+    public sealed partial class IEnurebleTopic : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NewCollection));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(IEnurebleTopic));
         
         string IMigrationMetadata.Id
         {
-            get { return "202108181803210_NewCollection"; }
+            get { return "202108191243326_IEnurebleTopic"; }
         }
         
         string IMigrationMetadata.Source

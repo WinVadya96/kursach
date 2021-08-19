@@ -40,7 +40,7 @@ namespace kursach.Controllers
             IList<Collection> collections = new List<Collection>();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                collections = await db.Collections.Include(m => m.CollectonTopic).ToListAsync();
+                collections = await db.Collections.Include(m => m.CollectionTopic).ToListAsync();
             }
             return View(collections);
         }

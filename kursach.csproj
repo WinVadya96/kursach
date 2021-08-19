@@ -199,33 +199,9 @@
     <Compile Include="Migrations\202108111010287_IsAdminIn2.Designer.cs">
       <DependentUpon>202108111010287_IsAdminIn2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202108111542291_Add CollectonModel.cs" />
-    <Compile Include="Migrations\202108111542291_Add CollectonModel.Designer.cs">
-      <DependentUpon>202108111542291_Add CollectonModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108120659345_Add TopicTable.cs" />
-    <Compile Include="Migrations\202108120659345_Add TopicTable.Designer.cs">
-      <DependentUpon>202108120659345_Add TopicTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108121331023_add IsEnabled.cs" />
-    <Compile Include="Migrations\202108121331023_add IsEnabled.Designer.cs">
-      <DependentUpon>202108121331023_add IsEnabled.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108132045332_addRoles.cs" />
-    <Compile Include="Migrations\202108132045332_addRoles.Designer.cs">
-      <DependentUpon>202108132045332_addRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108180821456_NewCollectionTopic.cs" />
-    <Compile Include="Migrations\202108180821456_NewCollectionTopic.Designer.cs">
-      <DependentUpon>202108180821456_NewCollectionTopic.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108181803210_NewCollection.cs" />
-    <Compile Include="Migrations\202108181803210_NewCollection.Designer.cs">
-      <DependentUpon>202108181803210_NewCollection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108181812357_NewCollectionTopicName.cs" />
-    <Compile Include="Migrations\202108181812357_NewCollectionTopicName.Designer.cs">
-      <DependentUpon>202108181812357_NewCollectionTopicName.cs</DependentUpon>
+    <Compile Include="Migrations\202108191243326_IEnurebleTopic.cs" />
+    <Compile Include="Migrations\202108191243326_IEnurebleTopic.Designer.cs">
+      <DependentUpon>202108191243326_IEnurebleTopic.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -320,12 +296,13 @@
     <Content Include="Views\UserCollections\Edit.cshtml" />
     <Content Include="Views\UserCollections\Index.cshtml" />
     <Content Include="Views\CollectionTopics\Create.cshtml" />
-    <Content Include="Views\CollectionTopics\Delete.cshtml" />
     <Content Include="Views\CollectionTopics\Details.cshtml" />
     <Content Include="Views\CollectionTopics\Edit.cshtml" />
     <Content Include="Views\CollectionTopics\Index.cshtml" />
     <Content Include="Views\CollectionTopics\EditTable.cshtml" />
     <Content Include="Views\CollectionTopics\EditTablePost.cshtml" />
+    <Content Include="Views\CollectionTopics\Delete.cshtml" />
+    <Content Include="Views\CollectionTopics\GetCollectionsDouble.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -350,26 +327,8 @@
     <EmbeddedResource Include="Migrations\202108111010287_IsAdminIn2.resx">
       <DependentUpon>202108111010287_IsAdminIn2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108111542291_Add CollectonModel.resx">
-      <DependentUpon>202108111542291_Add CollectonModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108120659345_Add TopicTable.resx">
-      <DependentUpon>202108120659345_Add TopicTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108121331023_add IsEnabled.resx">
-      <DependentUpon>202108121331023_add IsEnabled.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108132045332_addRoles.resx">
-      <DependentUpon>202108132045332_addRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108180821456_NewCollectionTopic.resx">
-      <DependentUpon>202108180821456_NewCollectionTopic.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108181803210_NewCollection.resx">
-      <DependentUpon>202108181803210_NewCollection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108181812357_NewCollectionTopicName.resx">
-      <DependentUpon>202108181812357_NewCollectionTopicName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202108191243326_IEnurebleTopic.resx">
+      <DependentUpon>202108191243326_IEnurebleTopic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

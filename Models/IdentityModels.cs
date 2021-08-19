@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
@@ -36,7 +37,7 @@ namespace kursach.Models
 
         public DbSet<Collection> Collections { get; set; }
         public DbSet<UserCollection> UserCollection { get; set; }
-        public DbSet<CollectionTopic> CollectonTopic { get; set; }
+        public DbSet<CollectionTopic> CollectionTopic { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -82,16 +83,16 @@ namespace kursach.Models
                 userManager.AddToRole(admin.Id, role2.Name);
             }
 
-            context.CollectonTopic.AddOrUpdate(new CollectionTopic { Name = "Алкоголь" });
-            context.CollectonTopic.AddOrUpdate(new CollectionTopic { Name = "Книги" });
-            context.CollectonTopic.AddOrUpdate(new CollectionTopic { Name = "Мячи" });
+            context.CollectionTopic.AddOrUpdate(new CollectionTopic { Name = "Алкоголь" });
+            context.CollectionTopic.AddOrUpdate(new CollectionTopic { Name = "Книги" });
+            context.CollectionTopic.AddOrUpdate(new CollectionTopic { Name = "Мячи" });
             context.SaveChanges();
-            context.Collections.AddOrUpdate(new Collection { Name = "Чайка", Description = "Это кника напасана А. Чеховым", CollectonTopicId = 2});
-            context.Collections.AddOrUpdate(new Collection { Name = "Водка", Description = "Это алкогольный напиток, 40%", CollectonTopicId = 1});
-            context.Collections.AddOrUpdate(new Collection { Name = "Adidas UCL 21 Pro SALA", Description = "Мяч для футбола на траве", CollectonTopicId  = 3});
-            context.Collections.AddOrUpdate(new Collection { Name = "Война и мир", Description = "Это кника напасана Л. Толстовым", CollectonTopicId = 2 });
-            context.Collections.AddOrUpdate(new Collection { Name = "Виски", Description = "Это алкогольный напиток, 60%", CollectonTopicId = 1 });
-            context.Collections.AddOrUpdate(new Collection { Name = "Select Briliant", Description = "Мяч для футзала", CollectonTopicId = 3 });
+            context.Collections.AddOrUpdate(new Collection { Name = "Чайка", Description = "Это кника напасана А. Чеховым", CollectionTopicId = 2});
+            context.Collections.AddOrUpdate(new Collection { Name = "Водка", Description = "Это алкогольный напиток, 40%", CollectionTopicId = 1});
+            context.Collections.AddOrUpdate(new Collection { Name = "Adidas UCL 21 Pro SALA", Description = "Мяч для футбола на траве", CollectionTopicId  = 3});
+            context.Collections.AddOrUpdate(new Collection { Name = "Война и мир", Description = "Это кника напасана Л. Толстовым", CollectionTopicId = 2 });
+            context.Collections.AddOrUpdate(new Collection { Name = "Виски", Description = "Это алкогольный напиток, 60%", CollectionTopicId = 1 });
+            context.Collections.AddOrUpdate(new Collection { Name = "Select Briliant", Description = "Мяч для футзала", CollectionTopicId = 3 });
             context.SaveChanges();
 
             base.Seed(context);

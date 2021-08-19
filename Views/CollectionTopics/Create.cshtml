@@ -28,16 +28,15 @@
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextArea("text", new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.TextArea(model => model., new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CollectonTopic.Name, "Topic", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CollectionTopic.Name, "Topic", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CollectonTopic.Name, "", new { @class = "text-danger" })
+                @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control " })
+                @Html.ValidationMessageFor(model => model.CollectionTopic.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -50,7 +49,7 @@
 }
 
 <div>
-    @Html.ActionLink("Назад", "GetCollections")
+    @Html.ActionLink("Назад", "GetCollections", "Home")
 </div>
 
 @section Scripts {

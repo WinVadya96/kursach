@@ -40,10 +40,10 @@ namespace kursach.Models
 
 
 
-        public int CollectonTopicId { get; set; }
-        public virtual CollectionTopic CollectonTopic { get; set; }
+        public int CollectionTopicId { get; set; }
+        public virtual CollectionTopic CollectionTopic { get; set; }
 
         public virtual ICollection<UserCollection> UserCollections { get; set; }
-        public virtual ICollection<CollectionTopic> CollectonTopics { get; set; }
+        public virtual ICollection<CollectionTopic> CollectionTopics { get; set; }
     }
 }
