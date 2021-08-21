@@ -10,6 +10,7 @@
 <div>
     <h4>Collection</h4>
     <hr />
+    <input type="hidden" value="@Model.Id" name="Id" />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -17,10 +18,11 @@
 
         <dd>
             @Html.DisplayFor(model => model.Name)
-        </dd>        
+        </dd>
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

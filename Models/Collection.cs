@@ -44,6 +44,6 @@ namespace kursach.Models
         public virtual CollectionTopic CollectionTopic { get; set; }
 
         public virtual ICollection<UserCollection> UserCollections { get; set; }
-        public virtual ICollection<CollectionTopic> CollectionTopics { get; set; }
+        public virtual ICollection<CollectionItem> Items { get; set; }
     }
 }

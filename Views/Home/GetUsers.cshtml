@@ -75,8 +75,16 @@
                 }
             </td>
             <td>
+                @*@if (item.IsBlocked.ToString == "True" ? Html.ActionLink("Заблокировать", "Blocked", new { id = item.Id }) : Html.ActionLink("Разблокировать", "Blocked", new { id = item.Id }))*@
+                @*@{ 
+                    bool on;
+                    on = item.IsBlocked == true ? @Html.ActionLink("Разблокировать", "Blocked", new { id = item.Id}) : @Html.ActionLink("Заблокировать", "Blocked", new { id = item.Id });
+                }*@ 
                 @Html.ActionLink("Просмотреть", "Edit", new { id = item.Id })
-                @Html.ActionLink("Заблокировать", "Blocked", new { id = item.Id })
+                @if (item.IsBlocked){
+                    @Html.ActionLink("Разблокировать", "Blocked", new { id = item.Id })}
+                else{
+                    @Html.ActionLink("Заблокировать", "Blocked", new { id = item.Id })}                 
                 @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
                 @Html.ActionLink("Сделать админом", "Admin", new { id = item.Id })
             </td>

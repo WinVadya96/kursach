@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using kursach.Controllers;
+using System.Net;
 
 namespace kursach.Controllers
 {
@@ -148,5 +149,47 @@ namespace kursach.Controllers
                 roles = userManager.GetRoles(user.Id);
             return View(roles);
         }
+
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        //[HttpGet]
+        //public ActionResult DeleteCollection(int? id)
+        //{
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        if (id == null)
+        //        {
+        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //        }
+        //        Collection collection = db.Collections.Find(id);
+        //        if (collection == null)
+        //        {
+        //            return HttpNotFound();
+        //        }
+        //        return View(collection);
+        //    }
+        //}
+
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteCollection(string id)
+        //{
+        //    Collection collection = db.Collections.Find(id);
+        //    db.Collections.Remove(collection);
+        //    db.SaveChanges();
+        //    return RedirectToAction("GetCollection", "Home");
+        //    //using (ApplicationDbContext db = new ApplicationDbContext())
+        //    //{
+        //    //    ApplicationUser us = db.Users.Find(id);
+        //    //    if (us == null)
+        //    //    {
+        //    //        return HttpNotFound();
+        //    //    }
+        //    //    db.Users.Remove(us);
+        //    //    db.SaveChanges();
+        //    //    return RedirectToAction("GetUsers");
+        //    //}
+        //}
     }
 }

@@ -15,7 +15,6 @@ namespace kursach.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
         public async Task<ActionResult> GetCollectionsDouble()
         {
             IList<Collection> collections = new List<Collection>();
@@ -49,42 +48,28 @@ namespace kursach.Controllers
         // GET: CollectionTopics/Create
         public ActionResult Create()
         {
-            ViewBag.Id = new SelectList(db.CollectionTopic, "Id", "Name");
-            return View();
+            SelectList topics = new SelectList(db.CollectionTopic, "Id", "Name");
+            ViewBag.Topics = topics;
+            return View(new Collection());
         }
 
         // POST: CollectionTopics/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Discription,CollectonTopicId")] Collection collection)
+        public ActionResult Create( Collection collection)
         {
+            //[Bind(Include = "Id,Name,Discription,CollectonTopicId")]
             if (ModelState.IsValid)
             {
                 db.Collections.Add(collection);
                 db.SaveChanges();
-                return RedirectToAction("GetCollection", "Home");
+                return RedirectToAction("GetCollections", "Home");
             }
 
-            ViewBag.Id = new SelectList(db.CollectionTopic, "Id", "Name");
+            SelectList topics = new SelectList(db.CollectionTopic, "Id", "Name");
+            ViewBag.Topics = topics;
             return View(collection);
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create(Collection model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var collection = new Collection { Name = model.Name, Description = model.Description, CollectionTopicId = model.CollectionTopicId};
-        //        var result = await Collection.Create(user, model.Password);
-        //        if (result.Succeeded)
-        //        {
-        //            await UserManager.AddToRoleAsync(user.Id, "user");
-        //            return RedirectToAction("GetUsers", "Home");
-        //        }
-        //    }
-        //    return View(model);
-        //}
 
 
         // GET: CollectionTopics/Edit/5
@@ -120,35 +105,6 @@ namespace kursach.Controllers
             return View(collectionTopic);
         }
 
-
-
-        //GET: CollectionTopics/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    CollectionTopic collectionTopic = db.CollectionTopic.Find(id);
-        //    if (collectionTopic == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(collectionTopic);
-        //}
-
-        //// POST: CollectionTopics/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    CollectionTopic collectionTopic = db.CollectionTopic.Find(id);
-        //    db.CollectionTopic.Remove(collectionTopic);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -166,6 +122,7 @@ namespace kursach.Controllers
                 return View(collection);
             }
         }
+
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -194,13 +151,18 @@ namespace kursach.Controllers
         [HttpGet]
         public ActionResult EditTable()
         {
+            //ViewBag.Id = new SelectList(db.CollectionTopic, "Id", "Name");
+            SelectList topics = new SelectList(db.CollectionTopic, "Id", "Name");
+            ViewBag.Topics = topics;
             return View(new Collection());
         }
 
         [HttpPost]
         public ActionResult EditTablePost(Collection collection)
         {
-            return View();
+            db.Collections.Add(collection);
+            db.SaveChanges();
+            return RedirectToAction("GetCollections", "Home");
         }
 
         protected override void Dispose(bool disposing)

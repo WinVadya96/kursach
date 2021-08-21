@@ -36,12 +36,21 @@ namespace kursach.Models
         { }
 
         public DbSet<Collection> Collections { get; set; }
+        public DbSet<CollectionItem> CollectionItems { get; set; }
         public DbSet<UserCollection> UserCollection { get; set; }
         public DbSet<CollectionTopic> CollectionTopic { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<CollectionItem>().HasKey(e => e.Id);
+
+            modelBuilder.Entity<Collection>().HasMany(e => e.Items).WithRequired(e => e.CollectionOfItem);
         }
     }
 
