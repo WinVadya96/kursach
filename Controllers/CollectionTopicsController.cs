@@ -56,7 +56,7 @@ namespace kursach.Controllers
         // POST: CollectionTopics/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Collection collection)
+        public ActionResult Create(Collection collection)
         {
             //[Bind(Include = "Id,Name,Discription,CollectonTopicId")]
             if (ModelState.IsValid)

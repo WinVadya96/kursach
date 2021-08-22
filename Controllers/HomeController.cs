@@ -46,6 +46,25 @@ namespace kursach.Controllers
             return View(collections);
         }
 
+        public async Task<ActionResult> GetCollectionsItem(int id)
+        {
+            IList<CollectionItem> collectionItems = new List<CollectionItem>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                collectionItems = await db.CollectionItems.Include(m => m.CollectionOfItem).ToListAsync();
+            }
+            return View(collectionItems);
+        }
+
+        //public ActionResult GetCollectionsItem()
+        //{
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        var collectionItem = db.CollectionItems.Include(m => m.CollectionOfItem);
+        //    }
+        //    return View(collectionItem.ToList());
+        //}
+
         [Authorize(Roles = "admin")]
         public async Task<ActionResult> GetUsers()
         {

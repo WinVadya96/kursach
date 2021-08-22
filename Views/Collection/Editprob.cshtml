@@ -1,0 +1,146 @@
+﻿@model kursach.Models.CollectionItem
+
+@{
+    ViewBag.Title = "Editprob";
+}
+
+<h2>Editprob</h2>
+
+<div>
+    <h4>CollectionItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CollectionOfItem.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollectionOfItem.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.String1Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.String1Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.String2Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.String2Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.String3Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.String3Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number1Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number1Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number2Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number2Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number3Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number3Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date1Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date1Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date2Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date2Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date3Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date3Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Markdown1Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Markdown1Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Markdown2Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Markdown2Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Markdown3Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Markdown3Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Checkbox1Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Checkbox1Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Checkbox2Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Checkbox2Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Checkbox3Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Checkbox3Value)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

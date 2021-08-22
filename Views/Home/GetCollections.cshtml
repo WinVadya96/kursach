@@ -87,15 +87,16 @@
                     @Html.DisplayFor(modelItem => item.CollectionTopic.Name)
                 </td>
                 <td>
-                    @if (item.String1Visible)
+                    @if (!item.String1Visible)
                     {
                         @*<label>@Html.DisplayFor(modelItem => item.String1Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.String1Name)
-                    }
-                    else
-                    {
+                        @*@Html.DisplayFor(modelItem => item.String1Name)*@
                         <label>&#8212</label>
                     }
+                    @*else
+        {
+            <label>&#8212</label>
+        }*@
                 </td>
                 <td>
                     @if (item.String2Visible)
@@ -255,7 +256,7 @@
                 <td>
                     <form action="/Collection/Delete/@item.Id" method="post"><input type="submit" id="add" value="Добавить в мою коллекцию" /></form>
                     <form action="/Collection/Details/@item.Id" method="post"><input type="submit" id="add" value="Просмотреть / Изменить" /></form>
-                    <form action="/Collection/Delete/@item.Id" method="post"><input type="submit" id="edit" value="Редактировать" /></form>
+                    <form action="/Collection/EditScheme/@item.Id" method="get"><input type="submit" id="edit" value="Редактировать" /></form>
                     <form action="/Collection/Delete/@item.Id" method="post"><input type="submit" id="edit" value="Удалить" /></form>
                     @*@Html.ActionLink("Просмотреть", "EditTable", "CollectionTopics", new { id = item.Id }, null)
                     @Html.ActionLink("Редактировать", "Details", "CollectionTopics", new { id = item.Id }, null)*@

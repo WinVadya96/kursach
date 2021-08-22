@@ -62,36 +62,39 @@ namespace kursach.Controllers
         }
 
         // GET: UserCollections/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
-            if (id == null)
+            ApplicationUser user = db.Users.Find(id);
+            if (id == "")
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserCollection userCollection = db.UserCollection.Find(id);
-            if (userCollection == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.UserId);
-            return View(userCollection);
+            //UserCollection userCollection = db.UserCollection.Find(id);
+            //if (userCollection == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.UserId);
+            ViewBag.Collections = db.Collections.ToList();
+            return View(user);
         }
 
         // POST: UserCollections/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CollectionId,NameId")] UserCollection userCollection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Edit(ApplicationUser user, int[] selectedCollections)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(userCollection).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.UserId);
-            return View(userCollection);
+            // TO DO: Раскоментировать и доделать!!!
+            //if (ModelState.IsValid)
+            //{
+            //    foreach (var item in db.Collections.Where(item => selectedCollections.Contains(item.Id)))
+            //    {
+            //        user.UserCollections.Add(item);
+            //    }                
+            //}
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: UserCollections/Delete/5

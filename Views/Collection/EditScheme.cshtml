@@ -1,0 +1,306 @@
+﻿@model kursach.Models.Collection
+
+@{
+    ViewBag.Title = "EditTable";
+}
+
+<h2>EditTable</h2>
+
+
+@using (Html.BeginForm("EditScheme", "Collection", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <h4>Topic</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    @*<input type="hidden" value="@Model.Id" name="Id" />*@
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            <div class="form-group col-md-3">
+                <label>Name</label>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            <div class="form-group col-md-3">
+                <label>Topic</label>
+                <br>
+                @Html.DropDownListFor(model => model.CollectionTopicId, ViewBag.Topics as SelectList)
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            <div class="form-group col-md-3">
+                <label> Discription</label>
+                @Html.TextAreaFor(model => model.Description, 3, 23, null)
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.String1Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @*<input type="checkbox" name="String1Visible" value="true" />*@
+            @Html.CheckBoxFor(m => m.String1Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            @*@Html.LabelFor(model => model.String1, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <input  type="text" placeholder="String1Name" border="1" name="String1Name" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.String1Name, "", new { @class = "text-danger" })
+            @*<br />*@
+            @*@Html.EditorFor(model => model.String1, new { htmlAttributes = new { @class = "form-control" } })*@
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.String2Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.String2Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="String2Name" border="1" name="String2Name" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.String2Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.String3Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.String3Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="String3Name" border="1" name="String3Name" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.String3Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.Number1Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.Number1Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="Number1Name" border="1" name="Number1Name" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Number1Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.Number2Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.Number2Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="Number2Name" border="1" name="Number2Name" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Number2Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.Number3Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.Number3Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="Number3Name" border="1" name="Number3Name" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Number3Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.Date1Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.Date1Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="Date1Name" border="1" name="Date1Name" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Date1Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.Date2Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.Date2Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="Date2Name" border="1" name="Date2Name" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Date2Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.Date3Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.Date3Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="Date3Name" border="1" name="Date3Name" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Date3Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.Checkbox1Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.CheckBox1Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="Checkbox1Name" border="1" name="Checkbox1Name" value="" class="form-control" />
+            @*<input type="checkbox" border="1" name="stringItems" value="Checkbox1" class="text-left" />*@
+            @*@Html.EditorFor(model => model.Checkbox1, new { htmlAttributes = new { @class = "form-control" } })*@
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.Checkbox2Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.CheckBox2Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="Checkbox2Name" border="1" name="Checkbox2Name" value="" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.Checkbox3Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.CheckBox3Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="Checkbox3Name" border="1" name="Checkbox3Name" value="" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.MarkdownField1Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.MarkdownField1Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="MarkdownField1Name" border="1" name="MarkdownField1Name" value="" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.MarkdownField2Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.MarkdownField2Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="MarkdownField2Name" border="1" name="MarkdownField2Name" value="" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2">
+            @Html.LabelFor(model => model.MarkdownField3Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 text-center">
+            @Html.CheckBoxFor(m => m.MarkdownField3Visible)
+            <label> Enabled?</label>
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" placeholder="MarkdownField3Name" border="1" name="MarkdownField3Name" value="" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Назад", "GetCollections", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
