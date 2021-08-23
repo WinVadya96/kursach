@@ -17,19 +17,13 @@ namespace kursach.Controllers
 
     public class HomeController : Controller
     {
-        //private AppDbInitializer db = new AppDbInitializer();
-        //public ActionResult Edit(ApplicationUser Email)
-        //{
-        //    ApplicationUser user = db.ApplicationUser.Find(Email);
-        //}
-
         public ActionResult Index()
         {
             return View();
         }
 
         [Authorize]
-        public ActionResult About()
+        public ActionResult AddInMyCollections()
         {
             ViewBag.Message = "Тут будут находится пользовательские коллекции.";
 
@@ -41,7 +35,7 @@ namespace kursach.Controllers
             IList<Collection> collections = new List<Collection>();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                collections = await db.Collections.Include(m => m.CollectionTopic).ToListAsync();
+                collections = await db.Collections.Include(m => m.CollectionTopic).ToListAsync().ConfigureAwait(false);
             }
             return View(collections);
         }
@@ -51,19 +45,10 @@ namespace kursach.Controllers
             IList<CollectionItem> collectionItems = new List<CollectionItem>();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                collectionItems = await db.CollectionItems.Include(m => m.CollectionOfItem).ToListAsync();
+                collectionItems = await db.CollectionItems.Include(m => m.CollectionOfItem).ToListAsync().ConfigureAwait(false);
             }
             return View(collectionItems);
         }
-
-        //public ActionResult GetCollectionsItem()
-        //{
-        //    using (ApplicationDbContext db = new ApplicationDbContext())
-        //    {
-        //        var collectionItem = db.CollectionItems.Include(m => m.CollectionOfItem);
-        //    }
-        //    return View(collectionItem.ToList());
-        //}
 
         [Authorize(Roles = "admin")]
         public async Task<ActionResult> GetUsers()
@@ -71,27 +56,10 @@ namespace kursach.Controllers
             IList<ApplicationUser> users = new List<ApplicationUser>();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                users = await db.Users.ToListAsync();
+                users = await db.Users.ToListAsync().ConfigureAwait(false);
             }
             return View(users);
         }
-
-        //[HttpGet]
-        //public ActionResult Create() //RegisterViewModel model
-        //{
-        //    return View();
-        //    //return View(model);
-        //}
-        //[HttpPost]
-        //public ActionResult Create(ApplicationUser user)
-        //{
-        //    using (ApplicationDbContext db = new ApplicationDbContext())
-        //    {
-        //        db.Users.Add(user);
-        //        db.SaveChanges();
-        //    }
-        //    return RedirectToAction("Index");
-        //}
 
         [HttpGet]
         public ActionResult Delete(string id)
@@ -122,7 +90,6 @@ namespace kursach.Controllers
                 return RedirectToAction("GetUsers");
             }
         }
-
 
         public ActionResult Blocked(string id)
         {
@@ -156,8 +123,6 @@ namespace kursach.Controllers
             }
         }
 
-
-        // Позволяет получить роли пользователя
         [Authorize]
         public ActionResult GetMyRoles()
         {
@@ -167,48 +132,6 @@ namespace kursach.Controllers
             if (user != null)
                 roles = userManager.GetRoles(user.Id);
             return View(roles);
-        }
-
-        private ApplicationDbContext db = new ApplicationDbContext();
-
-        //[HttpGet]
-        //public ActionResult DeleteCollection(int? id)
-        //{
-        //    using (ApplicationDbContext db = new ApplicationDbContext())
-        //    {
-        //        if (id == null)
-        //        {
-        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //        }
-        //        Collection collection = db.Collections.Find(id);
-        //        if (collection == null)
-        //        {
-        //            return HttpNotFound();
-        //        }
-        //        return View(collection);
-        //    }
-        //}
-
-
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteCollection(string id)
-        //{
-        //    Collection collection = db.Collections.Find(id);
-        //    db.Collections.Remove(collection);
-        //    db.SaveChanges();
-        //    return RedirectToAction("GetCollection", "Home");
-        //    //using (ApplicationDbContext db = new ApplicationDbContext())
-        //    //{
-        //    //    ApplicationUser us = db.Users.Find(id);
-        //    //    if (us == null)
-        //    //    {
-        //    //        return HttpNotFound();
-        //    //    }
-        //    //    db.Users.Remove(us);
-        //    //    db.SaveChanges();
-        //    //    return RedirectToAction("GetUsers");
-        //    //}
-        //}
+        }        
     }
 }

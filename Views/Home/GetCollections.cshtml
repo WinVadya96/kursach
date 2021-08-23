@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<kursach.Models.Collection>
 
 @{
-    ViewBag.Title = "Коллекции";
+    ViewBag.Title = "Collections";
 }
 
-<h2>Коллекции</h2>
+<h2>Collections</h2>
 <style>
     table#home_view-collection__table tr, table#home_view-collection__table th, table#home_view-collection__table td {
         border: 1px solid black;
@@ -87,180 +87,57 @@
                     @Html.DisplayFor(modelItem => item.CollectionTopic.Name)
                 </td>
                 <td>
-                    @if (!item.String1Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.String1Name)</label>*@
-                        @*@Html.DisplayFor(modelItem => item.String1Name)*@
-                        <label>&#8212</label>
-                    }
-                    @*else
-        {
-            <label>&#8212</label>
-        }*@
+                    <label>@(item.String1Visible ? Html.DisplayFor(modelItem => item.String1Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.String2Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.String2Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.String2Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.String2Visible ? Html.DisplayFor(modelItem => item.String2Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.String3Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.String3Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.String3Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.String3Visible ? Html.DisplayFor(modelItem => item.String3Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.Number1Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.Number1Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.Number1Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.Number1Visible ? Html.DisplayFor(modelItem => item.Number1Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.Number2Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.Number2Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.Number2Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.Number2Visible ? Html.DisplayFor(modelItem => item.Number2Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.Number3Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.Number3Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.Number3Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.Number3Visible ? Html.DisplayFor(modelItem => item.Number3Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.MarkdownField1Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.MarkdownField1Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.MarkdownField1Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.MarkdownField1Visible ? Html.DisplayFor(modelItem => item.MarkdownField1Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.MarkdownField2Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.MarkdownField2Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.MarkdownField2Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.MarkdownField2Visible ? Html.DisplayFor(modelItem => item.MarkdownField2Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.MarkdownField3Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.MarkdownField3Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.MarkdownField3Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.MarkdownField3Visible ? Html.DisplayFor(modelItem => item.MarkdownField3Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.Date1Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.Date1Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.Date1Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.Date1Visible ? Html.DisplayFor(modelItem => item.Date1Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.Date2Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.Date2Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.Date2Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.Date2Visible ? Html.DisplayFor(modelItem => item.Date2Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.Date3Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.Date3Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.Date3Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.Date3Visible ? Html.DisplayFor(modelItem => item.Date3Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.CheckBox1Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.Checkbox1Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.Checkbox1Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.CheckBox1Visible ? Html.DisplayFor(modelItem => item.Checkbox1Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.CheckBox2Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.Checkbox2Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.Checkbox2Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.CheckBox2Visible ? Html.DisplayFor(modelItem => item.Checkbox2Name).ToString() : "—")</label>
                 </td>
                 <td>
-                    @if (item.CheckBox3Visible)
-                    {
-                        @*<label>@Html.DisplayFor(modelItem => item.Checkbox3Name)</label>*@
-                        @Html.DisplayFor(modelItem => item.Checkbox3Name)
-                    }
-                    else
-                    {
-                        <label>&#8212</label>
-                    }
+                    <label>@(item.CheckBox3Visible ? Html.DisplayFor(modelItem => item.Checkbox3Name).ToString() : "—")</label>
                 </td>
 
                 <td>
-                    <form action="/Collection/Delete/@item.Id" method="post"><input type="submit" id="add" value="Добавить в мою коллекцию" /></form>
-                    <form action="/Collection/Details/@item.Id" method="post"><input type="submit" id="add" value="Просмотреть / Изменить" /></form>
-                    <form action="/Collection/EditScheme/@item.Id" method="get"><input type="submit" id="edit" value="Редактировать" /></form>
-                    <form action="/Collection/Delete/@item.Id" method="post"><input type="submit" id="edit" value="Удалить" /></form>
-                    @*@Html.ActionLink("Просмотреть", "EditTable", "CollectionTopics", new { id = item.Id }, null)
-                    @Html.ActionLink("Редактировать", "Details", "CollectionTopics", new { id = item.Id }, null)*@
-                    @*@Html.ActionLink("Удалить", "DeleteCollection", "Home", new { id = item.Id }, null)*@
+                    <form action="/Collection/AddInMyCollections/@item.Id" method="post"><input type="submit" id="add" value="Add in my collectios" /></form>
+                    <form action="/Collection/Details/@item.Id" method="post"><input type="submit" id="add" value="Details / Edit" /></form>
+                    <form action="/Collection/EditScheme/@item.Id" method="get"><input type="submit" id="edit" value="Edit scheme" /></form>
+                    <form action="/Collection/Delete/@item.Id" method="post"><input type="submit" id="edit" value="Delete" /></form>
+                    @*@Html.ActionLink("Просмотреть", "EditTable", "CollectionTopics", new { id = item.Id }, null)*@
                 </td>
             </tr>
 
@@ -268,10 +145,3 @@
         }
     }
 </table>
-
-<button class="navbar-btn" value="Edit_table"
-        onclick="location.href='@Url.Action("EditTable", "CollectionTopics")'">
-    Изменить таблицу
-</button>
-
-

@@ -77,12 +77,10 @@ namespace kursach.Controllers
 
             if (await UserIsBlocked(model.Email).ConfigureAwait(false))
             {
-                ModelState.AddModelError("", "Пользователь заблокирован.");
+                ModelState.AddModelError("", "The user is blocked.");
                 return View(model);
             }
 
-            // Сбои при входе не приводят к блокированию учетной записи
-            // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -94,7 +92,7 @@ namespace kursach.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Неудачная попытка входа.");
+                    ModelState.AddModelError("", "Unsuccessful login attempt.");
                     return View(model);
             }
         }
@@ -143,7 +141,7 @@ namespace kursach.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Неправильный код.");
+                    ModelState.AddModelError("", "Invalid code.");
                     return View(model);
             }
         }
@@ -178,7 +176,7 @@ namespace kursach.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("GetCollections", "Home");
                 }
                 AddErrors(result);
             }
@@ -329,7 +327,7 @@ namespace kursach.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Manage");
+                return RedirectToAction("GetCollections", "Manage");
             }
 
             if (ModelState.IsValid)
@@ -365,7 +363,7 @@ namespace kursach.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("GetCollections", "Home");
         }
 
         //
@@ -422,7 +420,7 @@ namespace kursach.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("GetCollections", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

@@ -79,7 +79,7 @@ namespace kursach.Controllers
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CollectionId,String1Value,String2Value,String3Value,Number1Value,Number2Value,Number3Value,Date1Value,Date2Value,Date3Value,Markdown1Value,Markdown2Value,Markdown3Value,Checkbox1Value,Checkbox2Value,Checkbox3Value")] CollectionItem collectionItem)
+        public ActionResult Edit(CollectionItem collectionItem)
         {
             if (ModelState.IsValid)
             {

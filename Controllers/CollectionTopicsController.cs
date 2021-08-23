@@ -15,15 +15,6 @@ namespace kursach.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public async Task<ActionResult> GetCollectionsDouble()
-        {
-            IList<Collection> collections = new List<Collection>();
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                collections = await db.Collections.Include(m => m.CollectionTopic).ToListAsync();
-            }
-            return View(collections);
-        }
         // GET: CollectionTopics
         public ActionResult Index()
         {

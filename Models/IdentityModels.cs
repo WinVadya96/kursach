@@ -50,7 +50,21 @@ namespace kursach.Models
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<CollectionItem>().HasKey(e => e.Id);
 
-            modelBuilder.Entity<Collection>().HasMany(e => e.Items).WithRequired(e => e.CollectionOfItem);
+            modelBuilder.Entity<Collection>()
+                .HasMany(e => e.Items)
+                .WithRequired(e => e.CollectionOfItem)
+                .HasForeignKey(q => q.CollectionId);
+
+            modelBuilder.Entity<Collection>()
+                .HasMany(e => e.UserCollections)
+                .WithRequired(z => z.Collection)
+                .HasForeignKey(q => q.CollectionId);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(e => e.UserCollections)
+                .WithRequired(z => z.User)
+                .HasForeignKey(q => q.UserId);
+            
         }
     }
 

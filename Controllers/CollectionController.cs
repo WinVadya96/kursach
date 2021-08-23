@@ -147,6 +147,18 @@ namespace kursach.Controllers
             return View(collection);
         }
 
+        //public ActionResult AddInMyCollections(int id = 0)
+        //{
+        //    Collection collection = db.Collections.Find(id);
+        //    if (collection == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    db.UserCollection.Add(id);
+        //    db.SaveChanges();
+        //    return RedirectToAction("GetCollections", "Home");
+        //}
+
 
         protected override void Dispose(bool disposing)
         {

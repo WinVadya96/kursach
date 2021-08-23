@@ -4,10 +4,11 @@
     ViewBag.Title = "GetUsers";
 }
 
-<h2>GetUsers</h2>
+<h2>Users</h2>
 <style>
     table#home_view-users__table tr, table#home_view-users__table th, table#home_view-users__table td {
         border: 1px solid black;
+        text-align: center
     }
 
     table#home_view-users__table th, table#home_view-users__table td {
@@ -24,7 +25,7 @@
             @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
+            @Html.DisplayNameFor(model => model.UserCollections)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -47,48 +48,29 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SecurityStamp)
+                @Html.DisplayFor(modelItem => item.UserName)
             </td>            
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsAdminIn)
-                @if (item.IsAdminIn)
-                {
-                    <label>Yes</label>
-                }
-                else
-                {
-                    <label>No</label>
-                }
+                <label> @(item.IsAdminIn ? "Yes" : "No")</label>
             </td>
             <td>
                 @Html.HiddenFor(modelItem => item.IsBlocked)
-                @if (item.IsBlocked)
-                {
-                    <label>Yes</label>
-                }
-                else
-                {
-                    <label>No</label>
-                }
+                <label> @(item.IsBlocked ? "Yes" : "No")</label>
+
             </td>
             <td>
-                @*@if (item.IsBlocked.ToString == "True" ? Html.ActionLink("Заблокировать", "Blocked", new { id = item.Id }) : Html.ActionLink("Разблокировать", "Blocked", new { id = item.Id }))*@
-                @*@{ 
-                    bool on;
-                    on = item.IsBlocked == true ? @Html.ActionLink("Разблокировать", "Blocked", new { id = item.Id}) : @Html.ActionLink("Заблокировать", "Blocked", new { id = item.Id });
-                }*@ 
-                @Html.ActionLink("Просмотреть", "Edit", new { id = item.Id })
+                @Html.ActionLink("View", "Edit", "UserCollections", new { id = item.Id }, null)
                 @if (item.IsBlocked){
-                    @Html.ActionLink("Разблокировать", "Blocked", new { id = item.Id })}
+                    @Html.ActionLink("Unblock", "Blocked", new { id = item.Id })}
                 else{
-                    @Html.ActionLink("Заблокировать", "Blocked", new { id = item.Id })}                 
-                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-                @Html.ActionLink("Сделать админом", "Admin", new { id = item.Id })
+                    @Html.ActionLink("Block", "Blocked", new { id = item.Id })}                 
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Admin", "Admin", new { id = item.Id })
             </td>
         </tr>
     }
-
 </table>

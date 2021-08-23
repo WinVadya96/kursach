@@ -27,7 +27,6 @@
     }
 </head>
 
-
 <body>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -40,12 +39,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Коллекции", "GetCollections", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Collections", "GetCollections", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Мои коллекции", "About", "Home")</li>
-                    <li>@Html.ActionLink("Пользователи", "GetUsers", "Home")</li>
+                    <li>@Html.ActionLink("My collections", "AddInMyCollections", "Collection")</li>
+                    <li>@Html.ActionLink("Users", "GetUsers", "Home")</li>
                     <li>@Html.ActionLink("Тили-тили", "GetCollections", "Home")</li>
 
                 </ul>
@@ -53,13 +52,6 @@
                     <i class="fa fa-adjust" aria-hidden="true"></i>Themes
                 </button>
                 @*<a id="change-themes-button" href='@Url.Action("ChangeTheme", "Themes")'> click me </a>*@
-
-                @*Для поиска данных*@
-                @*@using (Html.BeginForm("ChangeTheme", "Theme", FormMethod.Post)) {
-                    @Html.TextArea("text", "", 2, 20, null)
-                    <input type="submit" value="Send" />}*@
-
-
 
                 @*<input type="submit" value="Themes" onclick="location.href='@Url.Action("ChangeTheme", "Themes")'" />*@
 

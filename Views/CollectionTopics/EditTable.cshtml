@@ -6,7 +6,6 @@
 
 <h2>EditTable</h2>
 
-
 @using (Html.BeginForm("EditTablePost", "CollectionTopics", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -15,8 +14,6 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
-
-    @*<input type="hidden" value="@Model.Id" name="Id" />*@
 
     <div class="row">
         <div class="col-md-offset-2">
@@ -37,7 +34,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-md-offset-2">
@@ -209,8 +205,6 @@
         </div>
         <div class="form-group col-md-2">
             <input type="text" placeholder="Checkbox1Name" border="1" name="Checkbox1Name" value="" class="text-left" />
-            @*<input type="checkbox" border="1" name="stringItems" value="Checkbox1" class="text-left" />*@
-            @*@Html.EditorFor(model => model.Checkbox1, new { htmlAttributes = new { @class = "form-control" } })*@
         </div>
     </div>
 

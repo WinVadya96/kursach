@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using kursach.Models;
@@ -44,8 +45,6 @@ namespace kursach.Controllers
         }
 
         // POST: UserCollections/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CollectionId,NameId")] UserCollection userCollection)
@@ -62,20 +61,19 @@ namespace kursach.Controllers
         }
 
         // GET: UserCollections/Edit/5
-        public ActionResult Edit(string id)
+        [HttpGet]
+        public async Task<ActionResult> Edit(string id)
         {
-            ApplicationUser user = db.Users.Find(id);
-            if (id == "")
+            if (string.IsNullOrEmpty(id))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //UserCollection userCollection = db.UserCollection.Find(id);
-            //if (userCollection == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.UserId);
-            ViewBag.Collections = db.Collections.ToList();
+
+            ApplicationUser user = await db.Users
+                .Include(w => w.UserCollections.Select(z => z.Collection))
+                .FirstOrDefaultAsync(u => u.Id == id)
+                .ConfigureAwait(false);
+            ViewBag.Collections = user.UserCollections.Select(x => x.Collection).ToList();
             return View(user);
         }
 
@@ -90,7 +88,7 @@ namespace kursach.Controllers
             //    foreach (var item in db.Collections.Where(item => selectedCollections.Contains(item.Id)))
             //    {
             //        user.UserCollections.Add(item);
-            //    }                
+            //    }
             //}
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();

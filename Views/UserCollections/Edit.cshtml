@@ -1,5 +1,5 @@
 ﻿@using kursach.Models
-@model kursach.Models.UserCollection
+@model kursach.Models.ApplicationUser
 
 @{
     ViewBag.Title = "Edit";
@@ -17,11 +17,11 @@
         <fieldset>
             <legend>User</legend>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.UserId)
+            @Html.HiddenFor(model => model.UserName)
 
             <div class="editor-label"><b>Имя</b></div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.User.UserName)
+                @Html.EditorFor(model => model.UserName)
             </div>
             @* TO DO: раскоментировать и доделать!!! *@
 
@@ -31,7 +31,7 @@
                 foreach (Collection c in collections)
                 {
                     <input type="checkbox" name="selectedCollections" value="@c.Id"
-                    @(Model.Collections.Contains(c) ? "checked=\"checked\"" : "") />@c.Name <br />
+                    @(ViewBag.Collections.Contains(c) ? "checked=\"checked\"" : "") />@c.Name <br />
                 }
             }*@
 
