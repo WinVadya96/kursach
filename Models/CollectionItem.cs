@@ -19,9 +19,9 @@ namespace kursach.Models
         public double Number1Value { get; set; }
         public double Number2Value { get; set; }
         public double Number3Value { get; set; }
-        public DateTime Date1Value { get; set; }
-        public DateTime Date2Value { get; set; }
-        public DateTime Date3Value { get; set; }
+        public DateTime? Date1Value { get; set; }
+        public DateTime? Date2Value { get; set; }
+        public DateTime? Date3Value { get; set; }
         public string Markdown1Value { get; set; }
         public string Markdown2Value { get; set; }
         public string Markdown3Value { get; set; }

@@ -146,13 +146,13 @@ namespace kursach.Controllers
         }
 
         // GET: Collection/Edit/5 
-        public ActionResult Edit(int? collectionId)
+        public ActionResult Edit(int? id)
         {
-            if (collectionId == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = db.Collections.Find(collectionId);
+            Collection collection = db.Collections.Find(id);
             if (collection == null)
             {
                 return HttpNotFound();
@@ -175,50 +175,6 @@ namespace kursach.Controllers
             db.SaveChanges();
             return RedirectToAction("GetCollections", "Home");
         }
-
-        //пробный метод Edit
-        //public async Task<ActionResult> Editprob(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Collection collection = db.Collections.Find(id);
-        //    if (collection == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    IList<CollectionItem> collectionItems = new List<CollectionItem>();
-        //    using (ApplicationDbContext db = new ApplicationDbContext())
-        //    {
-        //        collectionItems = await db.CollectionItems.Include(m => m.CollectionOfItem).ToListAsync();
-        //    }
-        //    return View(collectionItems);
-        //}
-
-        public ActionResult Editprob(int id = 0)
-        {
-            Collection collection = db.Collections.Find(id);
-            if (collection == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CollectionItem = db.CollectionItems.ToList();
-            return View(collection);
-        }
-
-        //public ActionResult AddInMyCollections(int id = 0)
-        //{
-        //    Collection collection = db.Collections.Find(id);
-        //    if (collection == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    db.UserCollection.Add(id);
-        //    db.SaveChanges();
-        //    return RedirectToAction("GetCollections", "Home");
-        //}
-
 
         protected override void Dispose(bool disposing)
         {

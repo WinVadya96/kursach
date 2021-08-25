@@ -62,59 +62,6 @@ namespace kursach.Controllers
             return View(collection);
         }
 
-
-        // GET: CollectionTopics/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CollectionTopic collectionTopic = db.CollectionTopics.Find(id);
-            if (collectionTopic == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Id = new SelectList(db.Collections, "Id", "Name", collectionTopic.Id);
-            return View(collectionTopic);
-        }
-
-        // POST: CollectionTopics/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TopicId")] CollectionTopic collectionTopic)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(collectionTopic).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Id = new SelectList(db.Collections, "Id", "Name", collectionTopic.Id);
-            return View(collectionTopic);
-        }
-
-        [HttpGet]
-        public ActionResult Delete(int? id)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                Collection collection = db.Collections.Find(id);
-                if (collection == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(collection);
-            }
-        }
-
-
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string id)

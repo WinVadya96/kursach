@@ -150,8 +150,6 @@ namespace kursach.Controllers
                 db.SaveChanges();
                 return RedirectToAction("GetUsers");
             }
-        }
-
-                
+        }                
     }
 }

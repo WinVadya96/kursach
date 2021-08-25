@@ -225,6 +225,10 @@
     <Compile Include="Migrations\202108210835154_CollectionItem.Designer.cs">
       <DependentUpon>202108210835154_CollectionItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108251701359_DateTimeNull.cs" />
+    <Compile Include="Migrations\202108251701359_DateTimeNull.Designer.cs">
+      <DependentUpon>202108251701359_DateTimeNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Collection.cs" />
@@ -260,6 +264,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1-vsdoc.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -284,7 +289,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\AddInMyCollections.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -305,7 +309,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\GetUsers.cshtml" />
-    <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
     <Content Include="Views\Home\GetMyRoles.cshtml" />
     <Content Include="Views\Reg\Register2.cshtml" />
@@ -330,13 +333,11 @@
     <Content Include="Views\CollectionItems\Edit.cshtml" />
     <Content Include="Views\CollectionItems\Index.cshtml" />
     <Content Include="Views\Home\GetCollectionsItem.cshtml" />
-    <Content Include="Views\Collection\Editprob.cshtml" />
     <Content Include="Views\UserCollections\Edit.cshtml" />
-    <Content Include="Views\Home\GetMyCollectionsDouble.cshtml" />
     <Content Include="Views\Home\GetMyCollections.cshtml" />
     <Content Include="Views\Collection\Edit.cshtml" />
-    <Content Include="Views\Home\GetMyCollections2.cshtml" />
     <Content Include="Views\Collection\CreateMyCollection.cshtml" />
+    <Content Include="Views\CollectionItems\Create2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -365,6 +366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108210835154_CollectionItem.resx">
       <DependentUpon>202108210835154_CollectionItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108251701359_DateTimeNull.resx">
+      <DependentUpon>202108251701359_DateTimeNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

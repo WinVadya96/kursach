@@ -28,9 +28,14 @@
     }
 </style>
 
-<p>
-    @Html.ActionLink("Create New", "Create", "Collection")
-</p>
+@{ if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+    <p>
+        @Html.ActionLink("Create New", "Create", "Collection")
+    </p>
+    }
+}
+
 <table id="home_view-collection__table">
     <tr>
         <th>
@@ -64,9 +69,12 @@
         <th>Checkbox Field 1 Name</th>
         <th>Checkbox Field 1 Name</th>
         <th>Checkbox Field 1 Name</th>
-        <td>
-            <label> Collection actions </label>
-        </td>
+        @{ if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                <td><label> Collection actions </label></td>
+            }
+        }
+
     </tr>
 
     @{
@@ -135,13 +143,20 @@
                     <label>@(item.CheckBox3Visible ? Html.DisplayFor(modelItem => item.Checkbox3Name).ToString() : "—")</label>
                 </td>
 
-                <td>
-                    <form action="/UserCollections/AddInMyCollections/@item.Id" method="post"><input type="submit" id="add" value="Add in my collectios" /></form>
-                    <form action="/Collection/Edit/@item.Id" method="get"><input type="submit" id="edit" value="Edit" /></form>
-                    <form action="/Collection/EditScheme/@item.Id" method="get"><input type="submit" id="edit" value="Edit scheme" /></form>
-                    <form action="/Collection/Delete/@item.Id" method="post"><input type="submit" id="edit" value="Delete" /></form>
-                    @*@Html.ActionLink("Просмотреть", "EditTable", "CollectionTopics", new { id = item.Id }, null)*@
-                </td>
+                @{ if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        <td>
+                            <form action="/UserCollections/AddInMyCollections/@item.Id" method="post"><input type="submit" id="add" value="Add in my collectios" /></form>
+                            <form action="/Collection/Edit/@item.Id" method="get"><input type="submit" id="edit" value="Edit" /></form>
+                            <form action="/Collection/EditScheme/@item.Id" method="get"><input type="submit" id="edit" value="Edit scheme" /></form>
+                            <form action="/Collection/Delete/@item.Id" method="post"><input type="submit" id="edit" value="Delete" /></form>
+                            <form action="/CollectionItems/Details/@item.Id" method="get"><input type="submit" id="edit" value="Details" /></form>
+                            @*@Html.ActionLink("Просмотреть", "EditTable", "CollectionTopics", new { id = item.Id }, null)*@
+                        </td>
+                    }
+
+                }
+
             </tr>
             collectionNumber++;
         }

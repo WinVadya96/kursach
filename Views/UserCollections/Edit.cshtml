@@ -19,21 +19,26 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.UserName)
 
-            <div class="editor-label"><b>Имя</b></div>
+            <div class="editor-label"><b>Name</b></div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.UserName)
+            </div>
+            <br>
+            <div class="editor-label"><b>Email</b></div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Email)
             </div>
             @* TO DO: раскоментировать и доделать!!! *@
 
             @*<div class="editor-label"><b>Collections</b></div>
-            @{
-                List<Collection> collections = ViewBag.Collections;
-                foreach (Collection c in collections)
-                {
-                    <input type="checkbox" name="selectedCollections" value="@c.Id"
-                    @(ViewBag.Collections.Contains(c) ? "checked=\"checked\"" : "") />@c.Name <br />
-                }
-            }*@
+        @{
+            List<Collection> collections = ViewBag.Collections;
+            foreach (Collection c in collections)
+            {
+                <input type="checkbox" name="selectedCollections" value="@c.Id"
+                @(ViewBag.Collections.Contains(c) ? "checked=\"checked\"" : "") />@c.Name <br />
+            }
+        }*@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using kursach.Models;
@@ -19,44 +20,105 @@ namespace kursach.Controllers
         }
 
         // GET: CollectionItems/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CollectionItem collectionItem = db.CollectionItems.Find(id);
-            if (collectionItem == null)
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var collection = await db.Collections
+                    .Include(i => i.Items)
+                    .FirstOrDefaultAsync(c => c.Id == id)
+                    .ConfigureAwait(false); 
+                return View(collection);
+            }
+        }
+
+        //[HttpGet]
+        //public ActionResult Create(int id)
+        //{
+        //    Collection collection = db.Collections.Find(id);
+        //    if (collection == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    CollectionItem collectionItem = new CollectionItem
+        //    {
+        //        CollectionId = id,
+        //        CollectionOfItem = collection
+        //    };
+        //    return View(collectionItem);
+        //}
+
+        //// POST: CollectionItems/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(CollectionItem collectionItem)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.CollectionItems.Add(collectionItem);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Details", "CollectionItems");
+        //    }
+        //    return View(collectionItem);
+        //}
+
+        [HttpGet]
+        public ActionResult Create2(int id)
+        {
+            Collection collection = db.Collections.Find(id);
+            if (collection == null)
             {
                 return HttpNotFound();
             }
-            return View(collectionItem);
-        }
-
-        // GET: CollectionItems/Create
-        public ActionResult Create()
-        {
-            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name");
-            return View();
+            //CollectionItem collectionItem = new CollectionItem
+            //{
+            //    CollectionId = id,
+            //    CollectionOfItem = collection
+            //};
+            ViewBag.CollectionId = id;
+            return View(new CollectionItem());
         }
 
         // POST: CollectionItems/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CollectionId,String1Value,String2Value,String3Value,Number1Value,Number2Value,Number3Value,Date1Value,Date2Value,Date3Value,Markdown1Value,Markdown2Value,Markdown3Value,Checkbox1Value,Checkbox2Value,Checkbox3Value")] CollectionItem collectionItem)
+        public ActionResult Create2(CollectionItem collectionItem)
         {
-            if (ModelState.IsValid)
-            {
-                db.CollectionItems.Add(collectionItem);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", collectionItem.CollectionId);
-            return View(collectionItem);
+            db.CollectionItems.Add(collectionItem);
+            db.SaveChanges();
+            return RedirectToAction("Details", "CollectionItems", new { id = collectionItem.CollectionId});
+            //if (ModelState.IsValid)
+            //{
+            //    db.CollectionItems.Add(collectionItem);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Details", "CollectionItems");
+            //}
+            //return View(collectionItem);
         }
+
+
+
+        //public async Task<ActionResult> GetMyCollections()
+        //{
+
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        ApplicationUser user = await db.Users
+        //            .Include(w => w.UserCollections.Select(z => z.Collection.CollectionTopic))
+        //            .FirstOrDefaultAsync(u => u.Id == userId)
+        //            .ConfigureAwait(false);
+
+        //        var collections = user.UserCollections.Select(x => x.Collection).ToList();
+        //        return View(collections);
+        //    }
+        //}
+
+        // GET: CollectionItems/Create
+
 
         // GET: CollectionItems/Edit/5
         public ActionResult Edit(int? id)
@@ -75,8 +137,6 @@ namespace kursach.Controllers
         }
 
         // POST: CollectionItems/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CollectionItem collectionItem)
@@ -91,30 +151,22 @@ namespace kursach.Controllers
             return View(collectionItem);
         }
 
-        // GET: CollectionItems/Delete/5
-        public ActionResult Delete(int? id)
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
         {
-            if (id == null)
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CollectionItem collectionItem = db.CollectionItems.Find(id);
-            if (collectionItem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(collectionItem);
-        }
+                var dbSet = context.Set<CollectionItem>();
+                var collectionItem = await dbSet.FindAsync(id).ConfigureAwait(false);
 
-        // POST: CollectionItems/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CollectionItem collectionItem = db.CollectionItems.Find(id);
-            db.CollectionItems.Remove(collectionItem);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                if (collectionItem != null)
+                {
+                    dbSet.Remove(collectionItem);
+                    await context.SaveChangesAsync().ConfigureAwait(false);
+                }
+
+                return RedirectToAction("Details", "CollectionItems", new { id = collectionItem.CollectionId});
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -39,7 +39,6 @@ namespace kursach.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public async Task<ActionResult> AddInMyCollections(int id)
         {
             if (ModelState.IsValid)
@@ -88,7 +87,7 @@ namespace kursach.Controllers
             //}
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("GetUsers", "Home");
         }
 
         // GET: UserCollections/Delete/5
