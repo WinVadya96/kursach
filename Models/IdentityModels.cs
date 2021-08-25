@@ -37,8 +37,8 @@ namespace kursach.Models
 
         public DbSet<Collection> Collections { get; set; }
         public DbSet<CollectionItem> CollectionItems { get; set; }
-        public DbSet<UserCollection> UserCollection { get; set; }
-        public DbSet<CollectionTopic> CollectionTopic { get; set; }
+        public DbSet<UserCollection> UserCollections { get; set; }
+        public DbSet<CollectionTopic> CollectionTopics { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -106,9 +106,9 @@ namespace kursach.Models
                 userManager.AddToRole(admin.Id, role2.Name);
             }
 
-            context.CollectionTopic.AddOrUpdate(new CollectionTopic { Name = "Алкоголь" });
-            context.CollectionTopic.AddOrUpdate(new CollectionTopic { Name = "Книги" });
-            context.CollectionTopic.AddOrUpdate(new CollectionTopic { Name = "Мячи" });
+            context.CollectionTopics.AddOrUpdate(new CollectionTopic { Name = "Алкоголь" });
+            context.CollectionTopics.AddOrUpdate(new CollectionTopic { Name = "Книги" });
+            context.CollectionTopics.AddOrUpdate(new CollectionTopic { Name = "Мячи" });
             context.SaveChanges();
             context.Collections.AddOrUpdate(new Collection { Name = "Чайка", Description = "Это кника напасана А. Чеховым", CollectionTopicId = 2});
             context.Collections.AddOrUpdate(new Collection { Name = "Водка", Description = "Это алкогольный напиток, 40%", CollectionTopicId = 1});
@@ -117,6 +117,8 @@ namespace kursach.Models
             context.Collections.AddOrUpdate(new Collection { Name = "Виски", Description = "Это алкогольный напиток, 60%", CollectionTopicId = 1 });
             context.Collections.AddOrUpdate(new Collection { Name = "Select Briliant", Description = "Мяч для футзала", CollectionTopicId = 3 });
             context.SaveChanges();
+            //context.UserCollection.AddOrUpdate(new UserCollection { UserId = "f6413817-f078-49c2-b851-768acc680084", CollectionId = 1 });
+            //context.SaveChanges();
 
             base.Seed(context);
         }

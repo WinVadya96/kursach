@@ -1,4 +1,5 @@
 ﻿using kursach.Models;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace kursach.Controllers
         [HttpGet]
         public ActionResult EditScheme(int id)
         {
-            SelectList topics = new SelectList(db.CollectionTopic, "Id", "Name");
+            SelectList topics = new SelectList(db.CollectionTopics, "Id", "Name");
             ViewBag.Topics = topics;
             Collection collection = db.Collections.Find(id);
             return View(collection);
@@ -65,11 +66,32 @@ namespace kursach.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<ActionResult> DeleteMyCollection(int id)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var dbSet = context.Set<Collection>();
+                var collection = await dbSet.FindAsync(id).ConfigureAwait(false);
+                var userId = HttpContext.User.Identity.GetUserId();
+
+                if (collection != null)
+                {
+                    var user = context.UserCollections.First(p => p.UserId == userId);
+                    var myCollection = context.UserCollections.First(p => p.CollectionId == id);
+                    context.UserCollections.Remove(myCollection);
+                    await context.SaveChangesAsync().ConfigureAwait(false);
+                }
+
+                return RedirectToAction("GetMyCollections", "Home");
+            }
+        }
+
         // GET: Collection/Create
         [HttpGet]
         public ActionResult Create()
         {
-            SelectList topics = new SelectList(db.CollectionTopic, "Id", "Name");
+            SelectList topics = new SelectList(db.CollectionTopics, "Id", "Name");
             ViewBag.Topics = topics;
             return View(new Collection());
         }
@@ -77,41 +99,79 @@ namespace kursach.Controllers
         // POST: Collection/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Collection collection)
+        public async Task<ActionResult> Create(Collection collection)
         {
             if (ModelState.IsValid)
             {
                 db.Collections.Add(collection);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("GetCollections", "Home");
-            }
+            };          
 
-            SelectList topics = new SelectList(db.CollectionTopic, "Id", "Name");
+            SelectList topics = new SelectList(db.CollectionTopics, "Id", "Name");
+            ViewBag.Topics = topics;
+            return View(collection);
+        }
+
+        // GET: Collection/CreateMyCollection
+        [HttpGet]
+        public ActionResult CreateMyCollection()
+        {
+            SelectList topics = new SelectList(db.CollectionTopics, "Id", "Name");
+            ViewBag.Topics = topics;
+            return View(new Collection());
+        }
+
+        // POST: Collection/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateMyCollection(Collection collection)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Collections.Add(collection);
+                await db.SaveChangesAsync();
+                db.UserCollections.Add(new UserCollection
+                {
+                    UserId = HttpContext.User.Identity.GetUserId(),
+                    CollectionId = collection.Id
+                });
+                await db.SaveChangesAsync();
+                return RedirectToAction("GetMyCollections", "Home");
+            };
+
+            SelectList topics = new SelectList(db.CollectionTopics, "Id", "Name");
             ViewBag.Topics = topics;
             return View(collection);
         }
 
         // GET: Collection/Edit/5 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? collectionId)
         {
-            if (id == null)
+            if (collectionId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = db.Collections.Find(id);
+            Collection collection = db.Collections.Find(collectionId);
             if (collection == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Topics = new SelectList(db.CollectionTopic, "Id", "Name");
-
-            return View(collection);
+            //IList<CollectionItem> collectionItem = new List<CollectionItem>();
+            //ViewBag.Topics = new SelectList(db.CollectionTopic, "Id", "Name");
+            CollectionItem collectionItem = new CollectionItem
+            {
+                CollectionOfItem = collection
+            };
+            //ViewBag.Collection = new SelectList(db.Collections, "Id", "Name");
+            return View(collectionItem);
+            //return View(collectionItem);
         }
 
         [HttpPost]
-        public ActionResult Edit(Collection collection)
+        public ActionResult Edit(CollectionItem collectionItem)
         {
-            db.Entry(collection).State = EntityState.Modified;
+            db.Entry(collectionItem).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("GetCollections", "Home");
         }

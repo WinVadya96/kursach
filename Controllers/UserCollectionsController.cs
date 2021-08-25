@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using kursach.Models;
+using Microsoft.AspNet.Identity;
 
 namespace kursach.Controllers
 {
@@ -18,7 +19,7 @@ namespace kursach.Controllers
         // GET: UserCollections
         public ActionResult Index()
         {
-            var userCollections = db.UserCollection.Include(u => u.Collection);
+            var userCollections = db.UserCollections.Include(u => u.Collection);
             return View(userCollections.ToList());
         }
 
@@ -29,7 +30,7 @@ namespace kursach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserCollection userCollection = db.UserCollection.Find(id);
+            UserCollection userCollection = db.UserCollections.Find(id);
             if (userCollection == null)
             {
                 return HttpNotFound();
@@ -37,27 +38,22 @@ namespace kursach.Controllers
             return View(userCollection);
         }
 
-        // GET: UserCollections/Create
-        public ActionResult Create()
-        {
-            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name");
-            return View();
-        }
-
-        // POST: UserCollections/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CollectionId,NameId")] UserCollection userCollection)
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddInMyCollections(int id)
         {
             if (ModelState.IsValid)
             {
-                db.UserCollection.Add(userCollection);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                db.UserCollections.Add(new UserCollection
+                {
+                    UserId = HttpContext.User.Identity.GetUserId(),
+                    CollectionId = id
+                });
+                await db.SaveChangesAsync();
 
-            ViewBag.CollectionId = new SelectList(db.Collections, "Id", "Name", userCollection.UserId);
-            return View(userCollection);
+                return RedirectToAction("GetMyCollections", "Home");
+            }
+            return HttpNotFound();
         }
 
         // GET: UserCollections/Edit/5
@@ -102,7 +98,7 @@ namespace kursach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserCollection userCollection = db.UserCollection.Find(id);
+            UserCollection userCollection = db.UserCollections.Find(id);
             if (userCollection == null)
             {
                 return HttpNotFound();
@@ -115,8 +111,8 @@ namespace kursach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UserCollection userCollection = db.UserCollection.Find(id);
-            db.UserCollection.Remove(userCollection);
+            UserCollection userCollection = db.UserCollections.Find(id);
+            db.UserCollections.Remove(userCollection);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

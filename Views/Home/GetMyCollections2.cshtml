@@ -1,5 +1,4 @@
-﻿@using kursach.Models
-@model IEnumerable<kursach.Models.Collection>
+﻿@model kursach.Models.ApplicationUser
 
 @{
     ViewBag.Title = "Collections";
@@ -37,7 +36,7 @@
             @Html.DisplayName("№")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.UserCollections.)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
@@ -71,10 +70,8 @@
 
     @{
         int collectionNumber = 1;
-        //var collectionItem = (List<CollectionItem>)ViewData["CollectionItems"];
-        //var collectionItem = ViewData["CollectionItems"];
 
-        foreach (var item in Model)
+        foreach (var item in Model.UserCollections)
         {
             <tr>
                 <td>
@@ -137,12 +134,13 @@
 
                 <td>
                     <form action="/UserCollections/AddInMyCollections/@item.Id" method="post"><input type="submit" id="add" value="Add in my collectios" /></form>
-                    <form action="/Collection/Edit/@item.Id" method="get"><input type="submit" id="edit" value="Edit" /></form>
+                    <form action="/Collection/Details/@item.Id" method="post"><input type="submit" id="add" value="Details / Edit" /></form>
                     <form action="/Collection/EditScheme/@item.Id" method="get"><input type="submit" id="edit" value="Edit scheme" /></form>
                     <form action="/Collection/Delete/@item.Id" method="post"><input type="submit" id="edit" value="Delete" /></form>
                     @*@Html.ActionLink("Просмотреть", "EditTable", "CollectionTopics", new { id = item.Id }, null)*@
                 </td>
             </tr>
+
             collectionNumber++;
         }
     }

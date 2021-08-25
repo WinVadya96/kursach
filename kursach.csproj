@@ -310,7 +310,7 @@
     <Content Include="Views\Home\GetMyRoles.cshtml" />
     <Content Include="Views\Reg\Register2.cshtml" />
     <Content Include="Views\Home\GetCollections.cshtml" />
-    <Content Include="Views\UserCollections\Create.cshtml" />
+    <Content Include="Views\UserCollections\AddInMyCollections.cshtml" />
     <Content Include="Views\UserCollections\Delete.cshtml" />
     <Content Include="Views\UserCollections\Details.cshtml" />
     <Content Include="Views\UserCollections\Index.cshtml" />
@@ -323,7 +323,6 @@
     <Content Include="Views\CollectionTopics\Delete.cshtml" />
     <Content Include="Views\Collection\Create.cshtml" />
     <Content Include="Views\Collection\Details.cshtml" />
-    <Content Include="Views\Collection\Edit.cshtml" />
     <Content Include="Views\Collection\EditScheme.cshtml" />
     <Content Include="Views\CollectionItems\Create.cshtml" />
     <Content Include="Views\CollectionItems\Delete.cshtml" />
@@ -333,6 +332,11 @@
     <Content Include="Views\Home\GetCollectionsItem.cshtml" />
     <Content Include="Views\Collection\Editprob.cshtml" />
     <Content Include="Views\UserCollections\Edit.cshtml" />
+    <Content Include="Views\Home\GetMyCollectionsDouble.cshtml" />
+    <Content Include="Views\Home\GetMyCollections.cshtml" />
+    <Content Include="Views\Collection\Edit.cshtml" />
+    <Content Include="Views\Home\GetMyCollections2.cshtml" />
+    <Content Include="Views\Collection\CreateMyCollection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

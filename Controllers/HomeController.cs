@@ -23,11 +23,25 @@ namespace kursach.Controllers
         }
 
         [Authorize]
-        public ActionResult AddInMyCollections()
+        public async Task<ActionResult> GetMyCollections()
         {
-            ViewBag.Message = "Тут будут находится пользовательские коллекции.";
 
-            return View();
+            var userId = HttpContext.User.Identity.GetUserId();
+            if (string.IsNullOrEmpty(userId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {                
+                ApplicationUser user = await db.Users
+                    .Include(w => w.UserCollections.Select(z => z.Collection.CollectionTopic))
+                    .FirstOrDefaultAsync(u => u.Id == userId)
+                    .ConfigureAwait(false);
+
+                var collections = user.UserCollections.Select(x => x.Collection).ToList();
+                return View(collections);
+            }            
         }
 
         public async Task<ActionResult> GetCollections()
@@ -36,8 +50,12 @@ namespace kursach.Controllers
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 collections = await db.Collections.Include(m => m.CollectionTopic).ToListAsync().ConfigureAwait(false);
-            }
-            return View(collections);
+                //var collectionItem = await db.CollectionItems.ToListAsync().ConfigureAwait(false);
+                var collectionItem = db.CollectionItems;
+
+                //ViewData["CollectionItems"] = db.CollectionItems;
+                return View(collections);
+            }    
         }
 
         public async Task<ActionResult> GetCollectionsItem(int id)
@@ -59,6 +77,17 @@ namespace kursach.Controllers
                 users = await db.Users.ToListAsync().ConfigureAwait(false);
             }
             return View(users);
+        }
+
+        [Authorize]
+        public ActionResult GetMyRoles()
+        {
+            IList<string> roles = new List<string> { "Role not defined" };
+            ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            ApplicationUser user = userManager.FindByEmail(User.Identity.Name);
+            if (user != null)
+                roles = userManager.GetRoles(user.Id);
+            return View(roles);
         }
 
         [HttpGet]
@@ -123,15 +152,6 @@ namespace kursach.Controllers
             }
         }
 
-        [Authorize]
-        public ActionResult GetMyRoles()
-        {
-            IList<string> roles = new List<string> { "Роль не определена"};
-            ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            ApplicationUser user = userManager.FindByEmail(User.Identity.Name);
-            if (user != null)
-                roles = userManager.GetRoles(user.Id);
-            return View(roles);
-        }        
+                
     }
 }

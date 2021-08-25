@@ -28,7 +28,7 @@ namespace kursach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CollectionTopic collectionTopic = db.CollectionTopic.Find(id);
+            CollectionTopic collectionTopic = db.CollectionTopics.Find(id);
             if (collectionTopic == null)
             {
                 return HttpNotFound();
@@ -39,7 +39,7 @@ namespace kursach.Controllers
         // GET: CollectionTopics/Create
         public ActionResult Create()
         {
-            SelectList topics = new SelectList(db.CollectionTopic, "Id", "Name");
+            SelectList topics = new SelectList(db.CollectionTopics, "Id", "Name");
             ViewBag.Topics = topics;
             return View(new Collection());
         }
@@ -57,7 +57,7 @@ namespace kursach.Controllers
                 return RedirectToAction("GetCollections", "Home");
             }
 
-            SelectList topics = new SelectList(db.CollectionTopic, "Id", "Name");
+            SelectList topics = new SelectList(db.CollectionTopics, "Id", "Name");
             ViewBag.Topics = topics;
             return View(collection);
         }
@@ -70,7 +70,7 @@ namespace kursach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CollectionTopic collectionTopic = db.CollectionTopic.Find(id);
+            CollectionTopic collectionTopic = db.CollectionTopics.Find(id);
             if (collectionTopic == null)
             {
                 return HttpNotFound();
@@ -143,7 +143,7 @@ namespace kursach.Controllers
         public ActionResult EditTable()
         {
             //ViewBag.Id = new SelectList(db.CollectionTopic, "Id", "Name");
-            SelectList topics = new SelectList(db.CollectionTopic, "Id", "Name");
+            SelectList topics = new SelectList(db.CollectionTopics, "Id", "Name");
             ViewBag.Topics = topics;
             return View(new Collection());
         }

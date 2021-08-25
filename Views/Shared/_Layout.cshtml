@@ -43,7 +43,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("My collections", "AddInMyCollections", "Collection")</li>
+                    @*<li>@Html.ActionLink("My collections", "GetMyCollections", "Home", new { id = HttpContext.Current.User }, null)</li>*@
+                    <li>@Html.ActionLink("My collections", "GetMyCollections", "Home")</li>
                     <li>@Html.ActionLink("Users", "GetUsers", "Home")</li>
                     <li>@Html.ActionLink("Тили-тили", "GetCollections", "Home")</li>
 
