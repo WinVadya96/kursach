@@ -17,20 +17,6 @@ namespace kursach.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Collection collection = db.Collections.Find(id);
-            if (collection == null)
-            {
-                return HttpNotFound();
-            }
-            return View(collection);
-        }
-
         [HttpGet]
         public ActionResult EditScheme(int id)
         {
@@ -41,11 +27,11 @@ namespace kursach.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditScheme(Collection collection)
+        public async Task<ActionResult> EditScheme(Collection collection)
         {
             db.Entry(collection).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("GetCollections", "Home");
+            await db.SaveChangesAsync();
+            return RedirectToAction("GetMyCollections", "Home");
         }
 
         [HttpPost]
@@ -146,35 +132,35 @@ namespace kursach.Controllers
         }
 
         // GET: Collection/Edit/5 
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Collection collection = db.Collections.Find(id);
-            if (collection == null)
-            {
-                return HttpNotFound();
-            }
-            //IList<CollectionItem> collectionItem = new List<CollectionItem>();
-            //ViewBag.Topics = new SelectList(db.CollectionTopic, "Id", "Name");
-            CollectionItem collectionItem = new CollectionItem
-            {
-                CollectionOfItem = collection
-            };
-            //ViewBag.Collection = new SelectList(db.Collections, "Id", "Name");
-            return View(collectionItem);
-            //return View(collectionItem);
-        }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Collection collection = db.Collections.Find(id);
+        //    if (collection == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    //IList<CollectionItem> collectionItem = new List<CollectionItem>();
+        //    //ViewBag.Topics = new SelectList(db.CollectionTopic, "Id", "Name");
+        //    CollectionItem collectionItem = new CollectionItem
+        //    {
+        //        CollectionOfItem = collection
+        //    };
+        //    //ViewBag.Collection = new SelectList(db.Collections, "Id", "Name");
+        //    return View(collectionItem);
+        //    //return View(collectionItem);
+        //}
 
-        [HttpPost]
-        public ActionResult Edit(CollectionItem collectionItem)
-        {
-            db.Entry(collectionItem).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("GetCollections", "Home");
-        }
+        //[HttpPost]
+        //public ActionResult Edit(CollectionItem collectionItem)
+        //{
+        //    db.Entry(collectionItem).State = EntityState.Modified;
+        //    db.SaveChanges();
+        //    return RedirectToAction("GetCollections", "Home");
+        //}
 
         protected override void Dispose(bool disposing)
         {

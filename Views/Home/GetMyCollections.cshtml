@@ -19,12 +19,6 @@
         width: 9em;
         height: 2em;
     }
-
-    #add {
-        white-space: normal;
-        width: 9em;
-        height: 4em;
-    }
 </style>
 
 <p>
@@ -133,10 +127,9 @@
                 </td>
 
                 <td>                    
-                    <form action="/Collection/Details/@item.Id" method="post"><input type="submit" id="add" value="Details / Edit" /></form>
-                    <form action="/Collection/EditScheme/@item.Id" method="get"><input type="submit" id="edit" value="Edit scheme" /></form>
+                    <form action="/CollectionItems/Details/@item.Id" method="get"><input type="submit" id="edit" value="Items" /></form>
+                    <form action="/Collection/EditScheme/@item.Id" method="get"><input type="submit" id="edit" value="Edit" /></form>
                     <form action="/Collection/DeleteMyCollection/@item.Id" method="post"><input type="submit" id="edit" value="Delete" /></form>
-                    @*@Html.ActionLink("Просмотреть", "EditTable", "CollectionTopics", new { id = item.Id }, null)*@
                 </td>
             </tr>
 

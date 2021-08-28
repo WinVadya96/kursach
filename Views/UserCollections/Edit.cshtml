@@ -17,16 +17,20 @@
         <fieldset>
             <legend>User</legend>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.UserName)
+            @Html.HiddenFor(model => model.SecurityStamp)
 
             <div class="editor-label"><b>Name</b></div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.UserName)
+                @Html.TextBoxFor(model => model.UserName)
+                @*@Html.EditorFor(model => model.UserName)*@
             </div>
             <br>
             <div class="editor-label"><b>Email</b></div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.Email)
+                @Html.TextBoxFor(model => model.Email)
+            </div>
+            <div class="editor-field">
+                @Html.HiddenFor(model => model.PasswordHash)
             </div>
             @* TO DO: раскоментировать и доделать!!! *@
 

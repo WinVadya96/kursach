@@ -41,7 +41,8 @@ namespace kursach.Controllers
         [HttpPost]
         public async Task<ActionResult> AddInMyCollections(int id)
         {
-            if (ModelState.IsValid)
+            UserCollection userCollection = db.UserCollections.Find(HttpContext.User.Identity.GetUserId(), id);
+            if (ModelState.IsValid && userCollection == null)
             {
                 db.UserCollections.Add(new UserCollection
                 {
@@ -49,10 +50,8 @@ namespace kursach.Controllers
                     CollectionId = id
                 });
                 await db.SaveChangesAsync();
-
-                return RedirectToAction("GetMyCollections", "Home");
             }
-            return HttpNotFound();
+            return RedirectToAction("GetMyCollections", "Home"); 
         }
 
         // GET: UserCollections/Edit/5
@@ -68,7 +67,8 @@ namespace kursach.Controllers
                 .Include(w => w.UserCollections.Select(z => z.Collection))
                 .FirstOrDefaultAsync(u => u.Id == id)
                 .ConfigureAwait(false);
-            ViewBag.Collections = user.UserCollections.Select(x => x.Collection).ToList();
+            ViewBag.Collections = user.UserCollections.Select(x => x.User).ToList();
+            //Collection collection = ;
             return View(user);
         }
 

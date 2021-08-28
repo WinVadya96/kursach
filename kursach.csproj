@@ -265,6 +265,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\KursachVadim96 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1-vsdoc.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -325,7 +326,6 @@
     <Content Include="Views\CollectionTopics\EditTablePost.cshtml" />
     <Content Include="Views\CollectionTopics\Delete.cshtml" />
     <Content Include="Views\Collection\Create.cshtml" />
-    <Content Include="Views\Collection\Details.cshtml" />
     <Content Include="Views\Collection\EditScheme.cshtml" />
     <Content Include="Views\CollectionItems\Create.cshtml" />
     <Content Include="Views\CollectionItems\Delete.cshtml" />

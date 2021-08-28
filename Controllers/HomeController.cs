@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using kursach.Controllers;
 using System.Net;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace kursach.Controllers
 {
@@ -136,20 +137,37 @@ namespace kursach.Controllers
             }
         }
 
-        public ActionResult Admin(string id)
+        public async Task<ActionResult> Admin(string id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                ApplicationUser user = db.Users.Find(id);
+                var dbSet = db.Set<ApplicationUser>();
+                var user = await dbSet.FindAsync(id).ConfigureAwait(false);
+
                 if (user == null)
                 {
                     return HttpNotFound();
                 }
                 var z = user.IsAdminIn.ToString();
                 user.IsAdminIn = z == "False";
-                db.SaveChanges();
+
+                var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+                var role = new IdentityRole { Name = "admin" };
+                roleManager.Create(role);
+
+                if (user.IsAdminIn)
+                {
+                    await userManager.AddToRoleAsync(user.Id, role.Name).ConfigureAwait(false);
+                }
+                else
+                {
+                    await userManager.RemoveFromRoleAsync(user.Id, role.Name).ConfigureAwait(false);
+                }
+
+                await db.SaveChangesAsync();
                 return RedirectToAction("GetUsers");
             }
-        }                
+        }
     }
 }

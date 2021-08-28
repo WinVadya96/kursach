@@ -29,7 +29,7 @@
 </style>
 
 <p>
-    @Html.ActionLink("Create New CollectionItem", "Create2", "CollectionItems", new { id = Model.Id }, null)
+    @Html.ActionLink("Create New CollectionItem", "Create", "CollectionItems", new { id = Model.Id }, null)
 </p>
 <table id="home_view-collection__table">
     <tr>
@@ -39,27 +39,51 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayName("Topic")
-        </th>*@
-        <th>String Field 1 Name</th>
-        <th>String Field 2 Name</th>
-        <th>String Field 3 Name</th>
-        <th>Number Field 1 Name</th>
-        <th>Number Field 2 Name</th>
-        <th>Number Field 3 Name</th>
-        <th>Date Field 1 Name</th>
-        <th>Date Field 2 Name</th>
-        <th>Date Field 3 Name</th>
-        <th>Checkbox Field 1 Name</th>
-        <th>Checkbox Field 1 Name</th>
-        <th>Checkbox Field 1 Name</th>
-        <th>Markdown Field 1 Name</th>
-        <th>Markdown Field 2 Name</th>
-        <th>Markdown Field 3 Name</th>
+        @if (Model.String1Visible){
+            <th>@Html.DisplayFor(model => model.String1Name)</th>}
+        @if (Model.String2Visible){
+            <th>@Html.DisplayFor(model => model.String2Name)</th>}
+        @if (Model.String3Visible){
+            <th>@Html.DisplayFor(model => model.String3Name)</th>}
+        @if (Model.Number1Visible){
+            <th>@Html.DisplayFor(model => model.Number1Name)</th>}
+        @if (Model.Number2Visible){
+            <th>@Html.DisplayFor(model => model.Number2Name)</th>}
+        @if (Model.Number3Visible){
+            <th>@Html.DisplayFor(model => model.Number3Name)</th>}
+        @if (Model.Date1Visible){
+            <th>@Html.DisplayFor(model => model.Date1Name)</th>}
+        @if (Model.Date2Visible){
+            <th>@Html.DisplayFor(model => model.Date2Name)</th>}
+        @if (Model.Date3Visible){
+            <th>@Html.DisplayFor(model => model.Date3Name)</th>}
+        @if (Model.CheckBox1Visible){
+            <th>@Html.DisplayFor(model => model.Checkbox1Name)</th>}
+        @if (Model.CheckBox2Visible){
+            <th>@Html.DisplayFor(model => model.Checkbox2Name)</th>}
+        @if (Model.CheckBox3Visible){
+            <th>@Html.DisplayFor(model => model.Checkbox3Name)</th>}
+        @if (Model.MarkdownField1Visible){
+            <th>@Html.DisplayFor(model => model.MarkdownField1Name)</th>}
+        @if (Model.MarkdownField2Visible){
+            <th>@Html.DisplayFor(model => model.MarkdownField2Name)</th>}
+        @if (Model.MarkdownField3Visible){
+            <th>@Html.DisplayFor(model => model.MarkdownField3Name)</th>}
+
+        @*<th>@Html.DisplayFor(model => model.String2Name)</th>
+        <th>@Html.DisplayFor(model => model.String3Name)</th>
+        <th>@Html.DisplayFor(model => model.Number1Name)</th>
+        <th>@Html.DisplayFor(model => model.Number2Name)</th>
+        <th>@Html.DisplayFor(model => model.Number3Name)</th>
+        <th>@Html.DisplayFor(model => model.Date1Name)</th>
+        <th>@Html.DisplayFor(model => model.Date2Name)</th>
+        <th>@Html.DisplayFor(model => model.Date3Name)</th>
+        <th>@Html.DisplayFor(model => model.Checkbox1Name)</th>
+        <th>@Html.DisplayFor(model => model.Checkbox2Name)</th>
+        <th>@Html.DisplayFor(model => model.Checkbox3Name)</th>
+        <th>@Html.DisplayFor(model => model.MarkdownField1Name)</th>
+        <th>@Html.DisplayFor(model => model.MarkdownField2Name)</th>
+        <th>@Html.DisplayFor(model => model.MarkdownField3Name)</th>*@
         <td><label> Collection actions </label></td>
     </tr>
 
@@ -75,51 +99,111 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CollectionOfItem.Name)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.String1Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.String2Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.String3Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Number1Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Number2Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Number3Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date1Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date2Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date3Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Checkbox1Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Checkbox2Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Checkbox3Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Markdown1Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Markdown2Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Markdown3Value)
-                </td>
+
+                @if (Model.String1Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.String1Value)
+                    </td>
+                }
+                
+                @if (Model.String2Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.String2Value)
+                    </td>
+                }
+
+                @if (Model.String3Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.String3Value)
+                    </td>
+                }
+
+                @if (Model.Number1Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Number1Value)
+                    </td>
+                }
+                
+                @if (Model.Number2Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Number2Value)
+                    </td>
+                }
+
+                @if (Model.Number3Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Number3Value)
+                    </td>
+                }
+
+                @if (Model.Date1Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date1Value)
+                    </td>
+                }
+
+                @if (Model.Date2Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date2Value)
+                    </td>
+                }
+
+                @if (Model.Date3Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date3Value)
+                    </td>
+                }
+                
+                @if (Model.CheckBox1Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Checkbox1Value)
+                    </td>
+                }
+
+                @if (Model.CheckBox2Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Checkbox2Value)
+                    </td>
+                }
+
+                @if (Model.CheckBox3Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Checkbox3Value)
+                    </td>
+                }
+
+                @if (Model.MarkdownField1Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Markdown1Value)
+                    </td>
+                }
+
+                @if (Model.MarkdownField2Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Markdown2Value)
+                    </td>
+                }
+
+                @if (Model.MarkdownField3Visible)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Markdown3Value)
+                    </td>
+                }
 
                 <td>                    
                     <form action="/CollectionItems/Edit/@item.Id" method="get"><input type="submit" id="edit" value="Edit" /></form>

@@ -15,140 +15,178 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.CollectionId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CollectionId, "CollectionId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CollectionId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CollectionId, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.CollectionId, "Name Collection", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2">
+                @*@Html.DropDownList("CollectionId", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DisplayFor(model => model.CollectionOfItem.Name)
+
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.String1Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.String1Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.String1Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.String2Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.String2Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.String2Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.String3Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.String3Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.String3Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Number1Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Number1Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Number1Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Number2Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Number2Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Number2Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Number3Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Number3Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Number3Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Date1Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date1Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date1Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Date2Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date2Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date2Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Date3Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date3Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date3Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Markdown1Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Markdown1Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Markdown1Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Markdown2Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Markdown2Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Markdown2Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Markdown3Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Markdown3Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Markdown3Value, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Checkbox1Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Checkbox1Value)
-                    @Html.ValidationMessageFor(model => model.Checkbox1Value, "", new { @class = "text-danger" })
+        @if (Model.CollectionOfItem.String1Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.String1Name)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.String1Value, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.String1Value, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Checkbox2Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Checkbox2Value)
-                    @Html.ValidationMessageFor(model => model.Checkbox2Value, "", new { @class = "text-danger" })
+        }
+                
+        @if (Model.CollectionOfItem.String2Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.String2Name)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.String2Value, new { htmlAttributes = new {@class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.String2Value, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Checkbox3Value, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Checkbox3Value)
-                    @Html.ValidationMessageFor(model => model.Checkbox3Value, "", new { @class = "text-danger" })
+        }
+        
+        @if (Model.CollectionOfItem.String3Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.String3Name)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.String3Value, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.String3Value, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
+        }
+
+        @if (Model.CollectionOfItem.Number1Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Number1Name)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Number1Value, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Number1Value, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        @if (Model.CollectionOfItem.Number2Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Number2Name)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Number2Value, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.TextBoxFor(model => model.Number2Value, new { @type = "number", htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.Number2Value, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        @if (Model.CollectionOfItem.Number3Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Number3Name)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Number3Value, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.TextBoxFor(model => model.Number3Value, new { @type = "number", htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.Number3Value, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        @if (Model.CollectionOfItem.Date1Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Date1Name)</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Date1Value, new { @type = "date", htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.Date1Value, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+        }
+
+        @if (Model.CollectionOfItem.Date2Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Date2Name)</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Date2Value, new { @type = "date", htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        }
+
+        @if (Model.CollectionOfItem.Date3Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Date3Name)</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Date3Value, new { @type = "date", htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        }
+
+        @if (Model.CollectionOfItem.MarkdownField1Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.MarkdownField1Name)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Markdown1Value, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        }
+
+        @if (Model.CollectionOfItem.MarkdownField2Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.MarkdownField2Name)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Markdown2Value, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        }
+        
+        @if (Model.CollectionOfItem.MarkdownField3Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.MarkdownField3Name)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Markdown3Value, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        }
+
+        @if (Model.CollectionOfItem.CheckBox1Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Checkbox1Name)</label>
+                <div class="col-md-10">
+                    @*<input id="Checkbox1Value" name="Checkbox1Value" type="checkbox" value="" />*@
+                    @Html.CheckBoxFor(m => m.Checkbox1Value)
+                </div>
+            </div>
+        }
+
+        @if (Model.CollectionOfItem.CheckBox2Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Checkbox2Name)</label>
+                <div class="col-md-10">
+                    @*<input id="Checkbox2Value" name="Checkbox2Value" type="checkbox" value="" />*@
+                    @Html.CheckBoxFor(m => m.Checkbox2Value)
+                </div>
+            </div>
+        }
+
+        @if (Model.CollectionOfItem.CheckBox3Visible)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Checkbox3Name)</label>
+                <div class="col-md-10">
+                    @*<input id="Checkbox3Value" name="Checkbox3Value" type="checkbox" value="" />*@
+                    @Html.CheckBoxFor(m => m.Checkbox3Value)
+                </div>
+            </div>
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

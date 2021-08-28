@@ -55,9 +55,19 @@ namespace kursach
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "779481361784-sseslvpn4209qeeih70cfn66jdk44vpj.apps.googleusercontent.com",
-                ClientSecret = "S6cEoXWEu04C4pEqATx6iQkj"
+                ClientId = "1008623071780-ldjmal9cdouqv4qrs1i2fjhn1lusv1mi.apps.googleusercontent.com",
+                ClientSecret = "IXuGhK4a0nWvBIA5qLcBb4zW"
             });
+
+            //app.UseFacebookAuthentication(
+            //   appId: "350369863392095",
+            //   appSecret: "a43b742a48b6ac591a52f4692e9accae");
+
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "1008623071780-ldjmal9cdouqv4qrs1i2fjhn1lusv1mi.apps.googleusercontent.com",
+            //    ClientSecret = "IXuGhK4a0nWvBIA5qLcBb4zW"
+            //});
         }
     }
 }
