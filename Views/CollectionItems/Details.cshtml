@@ -69,21 +69,6 @@
             <th>@Html.DisplayFor(model => model.MarkdownField2Name)</th>}
         @if (Model.MarkdownField3Visible){
             <th>@Html.DisplayFor(model => model.MarkdownField3Name)</th>}
-
-        @*<th>@Html.DisplayFor(model => model.String2Name)</th>
-        <th>@Html.DisplayFor(model => model.String3Name)</th>
-        <th>@Html.DisplayFor(model => model.Number1Name)</th>
-        <th>@Html.DisplayFor(model => model.Number2Name)</th>
-        <th>@Html.DisplayFor(model => model.Number3Name)</th>
-        <th>@Html.DisplayFor(model => model.Date1Name)</th>
-        <th>@Html.DisplayFor(model => model.Date2Name)</th>
-        <th>@Html.DisplayFor(model => model.Date3Name)</th>
-        <th>@Html.DisplayFor(model => model.Checkbox1Name)</th>
-        <th>@Html.DisplayFor(model => model.Checkbox2Name)</th>
-        <th>@Html.DisplayFor(model => model.Checkbox3Name)</th>
-        <th>@Html.DisplayFor(model => model.MarkdownField1Name)</th>
-        <th>@Html.DisplayFor(model => model.MarkdownField2Name)</th>
-        <th>@Html.DisplayFor(model => model.MarkdownField3Name)</th>*@
         <td><label> Collection actions </label></td>
     </tr>
 
@@ -206,10 +191,8 @@
                 }
 
                 <td>                    
-                    <form action="/CollectionItems/Edit/@item.Id" method="get"><input type="submit" id="edit" value="Edit" /></form>
-                    @*<form action="/Collection/EditScheme/@item.Id" method="get"><input type="submit" id="edit" value="Edit scheme" /></form>*@
+                    <form action="/CollectionItems/Edit/@item.Id" method="get"><input type="submit" id="edit" value="Edit" /></form>                    
                     <form action="/CollectionItems/Delete/@item.Id" method="post"><input type="submit" id="edit" value="Delete" /></form>
-                    @*@Html.ActionLink("Просмотреть", "EditTable", "CollectionTopics", new { id = item.Id }, null)*@
                 </td>
             </tr>
             collectionNumber++;

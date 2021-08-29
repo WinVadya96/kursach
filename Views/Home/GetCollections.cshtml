@@ -79,8 +79,6 @@
 
     @{
         int collectionNumber = 1;
-        //var collectionItem = (List<CollectionItem>)ViewData["CollectionItems"];
-        //var collectionItem = ViewData["CollectionItems"];
 
         foreach (var item in Model)
         {
@@ -152,9 +150,7 @@
                             <form action="/Collection/Delete/@item.Id" method="post"><input type="submit" id="edit" value="Delete" /></form>
                         </td>                    
                     }
-
                 }
-
             </tr>
             collectionNumber++;
         }

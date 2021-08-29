@@ -20,7 +20,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CollectionId, "Name Collection", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="control-label col-md-2">
-                @*@Html.DropDownList("CollectionId", null, htmlAttributes: new { @class = "form-control" })*@
                 @Html.DisplayFor(model => model.CollectionOfItem.Name)
 
             </div>
@@ -75,8 +74,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Number2Name)</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Number2Value, new { htmlAttributes = new { @class = "form-control" } })
-                    @*@Html.TextBoxFor(model => model.Number2Value, new { @type = "number", htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.EditorFor(model => model.Number2Value, new { htmlAttributes = new { @class = "form-control" } })                 
                     @Html.ValidationMessageFor(model => model.Number2Value, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -87,8 +85,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Number3Name)</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Number3Value, new { htmlAttributes = new { @class = "form-control" } })
-                    @*@Html.TextBoxFor(model => model.Number3Value, new { @type = "number", htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.EditorFor(model => model.Number3Value, new { htmlAttributes = new { @class = "form-control" } })                   
                     @Html.ValidationMessageFor(model => model.Number3Value, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -100,7 +97,6 @@
                 <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Date1Name)</label>
                 <div class="col-md-10">
                     @Html.TextBoxFor(model => model.Date1Value, new { @type = "date", htmlAttributes = new { @class = "form-control" } })
-                    @*@Html.ValidationMessageFor(model => model.Date1Value, "", new { @class = "text-danger" })*@
                 </div>
             </div>
         }
@@ -160,7 +156,6 @@
             <div class="form-group">
                 <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Checkbox1Name)</label>
                 <div class="col-md-10">
-                    @*<input id="Checkbox1Value" name="Checkbox1Value" type="checkbox" value="" />*@
                     @Html.CheckBoxFor(m => m.Checkbox1Value)
                 </div>
             </div>
@@ -171,7 +166,6 @@
             <div class="form-group">
                 <label class="control-label col-md-2">@Html.DisplayFor(model => model.CollectionOfItem.Checkbox2Name)</label>
                 <div class="col-md-10">
-                    @*<input id="Checkbox2Value" name="Checkbox2Value" type="checkbox" value="" />*@
                     @Html.CheckBoxFor(m => m.Checkbox2Value)
                 </div>
             </div>
@@ -197,5 +191,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Details")
+    @Html.ActionLink("Back to List", "Details", new { id = Model.CollectionId })
 </div>

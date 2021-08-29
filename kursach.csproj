@@ -316,8 +316,6 @@
     <Content Include="Views\Home\GetCollections.cshtml" />
     <Content Include="Views\UserCollections\AddInMyCollections.cshtml" />
     <Content Include="Views\UserCollections\Delete.cshtml" />
-    <Content Include="Views\UserCollections\Details.cshtml" />
-    <Content Include="Views\UserCollections\Index.cshtml" />
     <Content Include="Views\CollectionTopics\Create.cshtml" />
     <Content Include="Views\CollectionTopics\Details.cshtml" />
     <Content Include="Views\CollectionTopics\Edit.cshtml" />
@@ -331,13 +329,10 @@
     <Content Include="Views\CollectionItems\Delete.cshtml" />
     <Content Include="Views\CollectionItems\Details.cshtml" />
     <Content Include="Views\CollectionItems\Edit.cshtml" />
-    <Content Include="Views\CollectionItems\Index.cshtml" />
     <Content Include="Views\Home\GetCollectionsItem.cshtml" />
     <Content Include="Views\UserCollections\Edit.cshtml" />
     <Content Include="Views\Home\GetMyCollections.cshtml" />
-    <Content Include="Views\Collection\Edit.cshtml" />
     <Content Include="Views\Collection\CreateMyCollection.cshtml" />
-    <Content Include="Views\CollectionItems\Create2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

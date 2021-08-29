@@ -34,6 +34,7 @@ namespace kursach.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, IsBlocked = false, IsAdminIn = false };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user.Id, "user");

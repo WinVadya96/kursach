@@ -15,29 +15,7 @@ namespace kursach.Controllers
     public class UserCollectionsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
-        // GET: UserCollections
-        public ActionResult Index()
-        {
-            var userCollections = db.UserCollections.Include(u => u.Collection);
-            return View(userCollections.ToList());
-        }
-
-        // GET: UserCollections/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            UserCollection userCollection = db.UserCollections.Find(id);
-            if (userCollection == null)
-            {
-                return HttpNotFound();
-            }
-            return View(userCollection);
-        }
-
+                                      
         [HttpPost]
         public async Task<ActionResult> AddInMyCollections(int id)
         {
@@ -67,54 +45,35 @@ namespace kursach.Controllers
                 .Include(w => w.UserCollections.Select(z => z.Collection))
                 .FirstOrDefaultAsync(u => u.Id == id)
                 .ConfigureAwait(false);
-            ViewBag.Collections = user.UserCollections.Select(x => x.User).ToList();
-            //Collection collection = ;
+            ViewBag.Collections = user.UserCollections.Select(x => x.Collection).ToList();
             return View(user);
         }
 
         // POST: UserCollections/Edit/5
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Edit(ApplicationUser user, int[] selectedCollections)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(ApplicationUser user)
         {
-            // TO DO: Раскоментировать и доделать!!!
-            //if (ModelState.IsValid)
+            ApplicationUser newUser = await db.Users.FirstOrDefaultAsync(u => u.Id == user.Id);
+            newUser.Email = user.Email;
+            newUser.UserName = user.UserName;
+            db.Entry(newUser).State = EntityState.Modified;
+            //await db.SaveChangesAsync();
+            return RedirectToAction("GetUsers", "Home");
+
+            //newUser.UserCollections.Clear();
+            //if (selectedCollections != null)
             //{
-            //    foreach (var item in db.Collections.Where(item => selectedCollections.Contains(item.Id)))
+            //    //получаем выбранные коллекции
+            //    foreach (var c in db.UserCollections.Where(c => selectedCollections.Contains(c.Collection.Id)))
             //    {
-            //        user.UserCollections.Add(item);
+            //        newUser.UserCollections.Add(c);
             //    }
             //}
-            db.Entry(user).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("GetUsers", "Home");
+
+
         }
 
-        // GET: UserCollections/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            UserCollection userCollection = db.UserCollections.Find(id);
-            if (userCollection == null)
-            {
-                return HttpNotFound();
-            }
-            return View(userCollection);
-        }
-
-        // POST: UserCollections/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            UserCollection userCollection = db.UserCollections.Find(id);
-            db.UserCollections.Remove(userCollection);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

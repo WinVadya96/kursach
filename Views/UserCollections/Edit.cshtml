@@ -6,49 +6,156 @@
 }
 
 <h2>Edit</h2>
+<style>
+    table#home_view-collection__table tr, table#home_view-collection__table th, table#home_view-collection__table td {
+        border: 1px solid black;
+        text-align: center
+    }
+
+    table#home_view-collection__table th, table#home_view-collection__table td {
+        padding: 4px;
+    }
+</style>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>UserCollection</h4>
         <hr />
         <fieldset>
             <legend>User</legend>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.SecurityStamp)
+            @Html.HiddenFor(model => model.PasswordHash)
 
             <div class="editor-label"><b>Name</b></div>
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.UserName)
-                @*@Html.EditorFor(model => model.UserName)*@
+                @Html.DisplayFor(model => model.UserName)
             </div>
             <br>
             <div class="editor-label"><b>Email</b></div>
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.Email)
-            </div>
-            <div class="editor-field">
-                @Html.HiddenFor(model => model.PasswordHash)
-            </div>
-            @* TO DO: раскоментировать и доделать!!! *@
+                @*@Html.TextBoxFor(model => model.Email)*@
+                @Html.DisplayFor(model => model.Email)
 
-            @*<div class="editor-label"><b>Collections</b></div>
-        @{
-            List<Collection> collections = ViewBag.Collections;
-            foreach (Collection c in collections)
-            {
-                <input type="checkbox" name="selectedCollections" value="@c.Id"
-                @(ViewBag.Collections.Contains(c) ? "checked=\"checked\"" : "") />@c.Name <br />
-            }
-        }*@
+            </div>
+            <br />
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class="col-md-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />
                 </div>
             </div>
+
+            <table id="home_view-collection__table">
+                <tr>
+                    <th>
+                        @Html.DisplayName("№")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Description")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Topic")
+                    </th>
+                    <th>String Field 1 Name</th>
+                    <th>String Field 2 Name</th>
+                    <th>String Field 3 Name</th>
+                    <th>Number Field 1 Name</th>
+                    <th>Number Field 2 Name</th>
+                    <th>Number Field 3 Name</th>
+                    <th>Date Field 1 Name</th>
+                    <th>Date Field 2 Name</th>
+                    <th>Date Field 3 Name</th>
+                    <th>Checkbox Field 1 Name</th>
+                    <th>Checkbox Field 1 Name</th>
+                    <th>Checkbox Field 1 Name</th>
+                    <th>Markdown Field 1 Name</th>
+                    <th>Markdown Field 2 Name</th>
+                    <th>Markdown Field 3 Name</th>
+                </tr>
+                @{
+                    int collectionNumber = 1;
+
+                    List<Collection> collections = ViewBag.Collections;
+                    foreach (Collection c in collections)
+                    {
+                        @*<input type="checkbox" name="selectedCollections" value="@c.Id"
+                    @(Model.UserCollections.Select(z => z.Collection).Contains(c) ? "checked=\"checked\"" : "") />@c.Name <br />*@
+                        <tr>
+                            <td>
+                                @collectionNumber
+                            </td>
+                            <td>
+                                <label>@c.Name</label>
+                            </td>
+                            <td>
+                                <label>@c.Description</label>
+                            </td>
+                            <td>
+                                <label>@c.CollectionTopic.Name</label>
+                            </td>
+                            <td>
+                                <label>@(c.String1Visible ? Html.DisplayFor(modelItem => c.String1Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.String2Visible ? Html.DisplayFor(modelItem => c.String2Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.String3Visible ? Html.DisplayFor(modelItem => c.String3Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.Number1Visible ? Html.DisplayFor(modelItem => c.Number1Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.Number2Visible ? Html.DisplayFor(modelItem => c.Number2Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.Number3Visible ? Html.DisplayFor(modelItem => c.Number3Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.Date1Visible ? Html.DisplayFor(modelItem => c.Date1Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.Date2Visible ? Html.DisplayFor(modelItem => c.Date2Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.Date3Visible ? Html.DisplayFor(modelItem => c.Date3Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.CheckBox1Visible ? Html.DisplayFor(modelItem => c.Checkbox1Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.CheckBox2Visible ? Html.DisplayFor(modelItem => c.Checkbox2Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.CheckBox3Visible ? Html.DisplayFor(modelItem => c.Checkbox3Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.MarkdownField1Visible ? Html.DisplayFor(modelItem => c.MarkdownField1Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.MarkdownField2Visible ? Html.DisplayFor(modelItem => c.MarkdownField2Name).ToString() : "—")</label>
+                            </td>
+                            <td>
+                                <label>@(c.MarkdownField3Visible ? Html.DisplayFor(modelItem => c.MarkdownField3Name).ToString() : "—")</label>
+                            </td>
+                        </tr>
+                        collectionNumber++;
+                    }
+                }
+
+
+            </table>
+            <br />
+
+
         </fieldset>
     </div>
 }
+
+

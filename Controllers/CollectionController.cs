@@ -131,37 +131,6 @@ namespace kursach.Controllers
             return View(collection);
         }
 
-        // GET: Collection/Edit/5 
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Collection collection = db.Collections.Find(id);
-        //    if (collection == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    //IList<CollectionItem> collectionItem = new List<CollectionItem>();
-        //    //ViewBag.Topics = new SelectList(db.CollectionTopic, "Id", "Name");
-        //    CollectionItem collectionItem = new CollectionItem
-        //    {
-        //        CollectionOfItem = collection
-        //    };
-        //    //ViewBag.Collection = new SelectList(db.Collections, "Id", "Name");
-        //    return View(collectionItem);
-        //    //return View(collectionItem);
-        //}
-
-        //[HttpPost]
-        //public ActionResult Edit(CollectionItem collectionItem)
-        //{
-        //    db.Entry(collectionItem).State = EntityState.Modified;
-        //    db.SaveChanges();
-        //    return RedirectToAction("GetCollections", "Home");
-        //}
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

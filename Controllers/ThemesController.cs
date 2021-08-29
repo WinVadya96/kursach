@@ -11,20 +11,14 @@ namespace kursach.Controllers
         // GET: Themes
         public ActionResult ChangeTheme()
         {
-            if (Request.Cookies["Theme"] == null)
+            Response.Cookies.Add(new HttpCookie("Theme", "light"));
+            if (Request.Cookies["Theme"].Value == "dark")
             {
-                Response.Cookies.Add(new HttpCookie("Theme", "light"));
+                Response.Cookies["Theme"].Value = "light";
             }
-            else
+            else 
             {
-                if (Request.Cookies["Theme"].Value == "dark")
-                {
-                    Response.Cookies["Theme"].Value = "light";
-                }
-                else if (Request.Cookies["Theme"].Value == "light")
-                {
-                    Response.Cookies["Theme"].Value = "dark";
-                }
+                Response.Cookies["Theme"].Value = "dark";
             }
             return RedirectToAction("GetCollections", "Home");
         }

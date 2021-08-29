@@ -60,8 +60,8 @@ namespace kursach
             });
 
             //app.UseFacebookAuthentication(
-            //   appId: "350369863392095",
-            //   appSecret: "a43b742a48b6ac591a52f4692e9accae");
+            //   appId: "684286029194205",
+            //   appSecret: "807bcb9f67c88793ccbd45171c58e936");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

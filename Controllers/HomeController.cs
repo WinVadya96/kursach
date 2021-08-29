@@ -51,10 +51,7 @@ namespace kursach.Controllers
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 collections = await db.Collections.Include(m => m.CollectionTopic).ToListAsync().ConfigureAwait(false);
-                //var collectionItem = await db.CollectionItems.ToListAsync().ConfigureAwait(false);
                 var collectionItem = db.CollectionItems;
-
-                //ViewData["CollectionItems"] = db.CollectionItems;
                 return View(collections);
             }    
         }
@@ -154,16 +151,13 @@ namespace kursach.Controllers
                 var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
                 var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
                 var role = new IdentityRole { Name = "admin" };
-                roleManager.Create(role);
 
-                if (user.IsAdminIn)
-                {
-                    await userManager.AddToRoleAsync(user.Id, role.Name).ConfigureAwait(false);
-                }
-                else
-                {
-                    await userManager.RemoveFromRoleAsync(user.Id, role.Name).ConfigureAwait(false);
-                }
+                await roleManager.CreateAsync(role);
+
+                if (user.IsAdminIn){
+                    await userManager.AddToRoleAsync(user.Id, role.Name).ConfigureAwait(false);}
+                else{
+                    await userManager.RemoveFromRoleAsync(user.Id, role.Name).ConfigureAwait(false);}
 
                 await db.SaveChangesAsync();
                 return RedirectToAction("GetUsers");

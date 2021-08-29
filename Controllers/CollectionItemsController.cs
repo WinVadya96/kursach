@@ -13,13 +13,6 @@ namespace kursach.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: CollectionItems
-        public ActionResult Index()
-        {
-            var collectionItems = db.CollectionItems.Include(c => c.CollectionOfItem);
-            return View(collectionItems.ToList());
-        }
-
         // GET: CollectionItems/Details/5
         public async Task<ActionResult> Details(int? id)
         {
