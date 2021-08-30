@@ -49,25 +49,25 @@ namespace kursach
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "350369863392095",
-               appSecret: "a43b742a48b6ac591a52f4692e9accae");
-
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "1008623071780-ldjmal9cdouqv4qrs1i2fjhn1lusv1mi.apps.googleusercontent.com",
-                ClientSecret = "IXuGhK4a0nWvBIA5qLcBb4zW"
-            });
-
             //app.UseFacebookAuthentication(
-            //   appId: "684286029194205",
-            //   appSecret: "807bcb9f67c88793ccbd45171c58e936");
+            //   appId: "350369863392095",
+            //   appSecret: "a43b742a48b6ac591a52f4692e9accae");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
             //    ClientId = "1008623071780-ldjmal9cdouqv4qrs1i2fjhn1lusv1mi.apps.googleusercontent.com",
             //    ClientSecret = "IXuGhK4a0nWvBIA5qLcBb4zW"
             //});
+
+            app.UseFacebookAuthentication(
+               appId: "684286029194205",
+               appSecret: "807bcb9f67c88793ccbd45171c58e936");
+
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1008623071780-mrcpigeh48rgnp9hh91gv4kbdj8av9pm.apps.googleusercontent.com",
+                ClientSecret = "XMBxz1FQS1msFatPTO0yAkMS"
+            });
         }
     }
 }
